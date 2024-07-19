@@ -3,7 +3,7 @@ import axios from 'axios'
  
 
 const clienteAxios = axios.create({
- baseURL: 'http://localhost:8080/api'
+ baseURL: 'https://front2-examen-final-pweb.vercel.app/api'
 
 })
 
