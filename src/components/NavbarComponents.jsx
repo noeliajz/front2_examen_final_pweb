@@ -36,7 +36,6 @@ const NavbarComponents = () => {
               <>
                 <Nav.Link href="/">Inicio</Nav.Link>
                 <Nav.Link href="/hospital">Hospitales</Nav.Link>
-                <Nav.Link href="/sanatorios">Sanatorios</Nav.Link>
                 <Nav.Link onClick={() => logoutUserFunction()} href="/">Cerrar sesión</Nav.Link>
               </>
             )}
