@@ -14,14 +14,29 @@ const AdminHospitalPage = () => {
   const [refreshallhospital, setRefreshallhospital] = useState(false);
 
   const getAllhospital = async () => {
-/*      const token = localStorage.getItem("token");
- */ 
-   const res = await clienteAxios.get('/hospital')
-   const  {allhospital}= res.data.
-   setallhospital(allhospital)
+    const token = localStorage.getItem("token");
 
-  } 
+    try {
+      const res = await fetch("http://localhost:8080/api/hospital", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
+      if (!res.ok) {
+        const errorText = await res.text();
+        throw new Error(errorText);
+      }
+
+      const { allhospital } = await res.json();
+      setallhospital(allhospital);
+    } catch (error) {
+      console.error("Error fetching hospital:", error);
+    }
+  }
+  
   
 
   const deletehospital = async (id) => {

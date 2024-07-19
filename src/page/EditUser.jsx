@@ -24,17 +24,15 @@ const EditStudies = () => {
 
   const getUser = async () => {
     try {
-      const token = localStorage.getItem("token")
+      const token = localStorage.getItem("token");
       const res = await fetch(`http://localhost:8080/api/users/${params.id}`, {
-        headers: {'authorization': `Bearer ${token}`  }
-
+        headers: { 'Authorization': `Bearer ${token}` }
       });
       if (!res.ok) {
         throw new Error('No se pudo obtener el usuario');
       }
       const data = await res.json();
-      setUser(data.getUser);
-      console.log(user)
+      setUser(data.getUser); // Asegúrate de que `getUser` sea el objeto de usuario devuelto por el servidor
       setFormValues({
         usuario: data.getUser.usuario || '',
         pass: data.getUser.pass || '',
@@ -68,10 +66,12 @@ const EditStudies = () => {
       });
     } else {
       try {
+        const token = localStorage.getItem("token");
         const res = await fetch(`http://localhost:8080/api/users/${params.id}`, {
           method: 'PUT',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
           },
           body: JSON.stringify({
             usuario: formValues.usuario,
