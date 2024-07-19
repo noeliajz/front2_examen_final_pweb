@@ -5,11 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
      "build": "npm run generate-html && vite build",
- "generate-html": "mkdir -p dist && cp index.html dist/"
+    "generate-html": "cp index.html dist/"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
