@@ -8,33 +8,35 @@ import NavbarComponentsAdmin from "../components/NavbarComponentsAdmin";
 import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import clienteAxios from "./clienteAxios";
 
 const AdminUserPage = () => {
   const [allUsers, setUsers] = useState([]);
   const [refreshUsers, setRefreshUsers] = useState(false);
 
   const getAllUsers = async () => {
-/*     const token = localStorage.getItem("token");
- */ 
-try {
-  const res = await clienteAxios.get('/users', config)
-  const  {allUsers}= res.data
-  setUsers(allUsers)
-    
-} catch (error) {
- 
-    Swal.fire({
-        position: 'center',
-        icon: 'error',
-        title: 'Error!',
-        showConfirmButton: false,
-        timer: 1300
-    });
+    const token = localStorage.getItem("token");
 
-}
+    try {
+      const res = await fetch("http://localhost:8080/api/users", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-  };
+      if (!res.ok) {
+        const errorText = await res.text();
+        throw new Error(errorText);
+      }
+
+      const { allUsers } = await res.json();
+      setUsers(allUsers);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
+  }
+  
 
   const deleteUser = async (id) => {
     const token = localStorage.getItem("token");
