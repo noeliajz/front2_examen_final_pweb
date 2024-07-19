@@ -60,19 +60,6 @@ const CardAdmin = () => {
               </Link>{" "}
             </Card.Body>
           </Card>
-          <Card className="p-4 text-center">
-            <Card.Img
-              variant="top"
-              style={{ height: "210px" }}
-              src="https://www.gba.gob.ar/sites/default/files/salud/imagenes/1_187.jpeg"
-            />
-            <Card.Body>
-              <Card.Title>Sanatorios</Card.Title>
-              <Link to="/adminSanatorioPage" className="btn btn-info">
-                Ingresar
-              </Link>{" "}
-            </Card.Body>
-          </Card>
         </CardGroup>
       </div>
     </>
