@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/esm/Col';
 import Swal from 'sweetalert2';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Footer from '../components/Footer'
 
 const NewDoctorUser = () => {
   const [inputCheckName, setInputCheckName] = useState(false);
@@ -90,9 +91,9 @@ const NewDoctorUser = () => {
   return (
     <>
       <NavbarComponentsAdmin />
-      <Container>
-        <Row className="justify-content-center" style={{ paddingTop: '25px' }}>
-          <Col sm={12} md={5} lg={8}>
+      <Container fluid style={{background:"#E1F7F5"}}>
+        <Row className="justify-content-center" style={{ padding: '25px' }}>
+          <Col sm={12} md={5} lg={7}>
           <h3 className='text-center' style={{padding:"20px"}}>Agregar un nuevo doctor/a:</h3>
             <Form>
               <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -159,6 +160,7 @@ const NewDoctorUser = () => {
           </Col>
         </Row>
       </Container>
+      <Footer/>
     </>
   );
 };
