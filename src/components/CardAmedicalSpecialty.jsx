@@ -6,10 +6,10 @@ import { Link } from "react-router-dom";
 const CardAmedicalSpecialty = () => {
   return (
     <>
-      <div>
+      <div style={{padding: "40px", background:"#E1F7F5"}}>
       <Link  to="/newDoctorUser" className="btn btn-info m-4" >Agregar nuevo dr/a</Link>{" "}
-        <CardGroup className="p-3">
-          <Card className="p-4 text-center">
+        <CardGroup >
+          <Card className="m-3 text-center">
             <Card.Img
               variant="top"
               style={{ height: "210px" }}
@@ -20,7 +20,7 @@ const CardAmedicalSpecialty = () => {
               <Link to="/doctorsPage" className="btn btn-info">Ingresar</Link>
             </Card.Body>
           </Card>
-          <Card className="p-4 text-center">
+          <Card className="m-3 text-center">
             <Card.Img
               variant="top"
               style={{ height: "210px" }}
@@ -31,7 +31,7 @@ const CardAmedicalSpecialty = () => {
               <Link to="/doctorsPage" className="btn btn-info">Ingresar</Link>{" "}
             </Card.Body>
           </Card>
-          <Card className="p-4 text-center">
+          <Card className="m-3 text-center">
             <Card.Img
               variant="top"
               style={{ height: "210px" }}

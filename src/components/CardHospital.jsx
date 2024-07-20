@@ -7,8 +7,8 @@ const CardHospital = () => {
   return (
     <>
        <div>
-        <CardGroup className="p-3">
-          <Card className="p-4 text-center">
+        <CardGroup style={{paddingTop:"40px", background:"#E1F7F5"}}>
+          <Card className="m-3 text-center">
             <Card.Img
               variant="top"
               style={{ height: "210px" }}
@@ -19,7 +19,7 @@ const CardHospital = () => {
                   <a href='/moreInformation2' className='btn btn-info'>Más información</a>
            </Card.Body>
           </Card>
-          <Card className="p-4 text-center">
+          <Card className="m-3 text-center">
             <Card.Img
               variant="top"
               style={{ height: "210px" }}
@@ -30,7 +30,7 @@ const CardHospital = () => {
               <a href='/moreInformation' className='btn btn-info'>Más información</a>
               </Card.Body>
           </Card>
-          <Card className="p-4 text-center">
+          <Card className="m-3 text-center">
             <Card.Img
               variant="top"
               style={{ height: "210px" }}
@@ -41,7 +41,7 @@ const CardHospital = () => {
               <a href='/moreInformation3' className='btn btn-info'>Más información</a>
             </Card.Body>
           </Card>
-          <Card className="p-4 text-center">
+          <Card className="m-3 text-center">
             <Card.Img
               variant="top"
               style={{ height: "210px" }}
@@ -55,8 +55,8 @@ const CardHospital = () => {
         </CardGroup>
        </div>
        <div>
-        <CardGroup className="p-3">
-          <Card className="p-4 text-center">
+        <CardGroup style={{paddingTop:"40px", background:"#E1F7F5"}}>
+          <Card className="m-3 text-center">
             <Card.Img
               variant="top"
               style={{ height: "210px" }}
@@ -67,7 +67,7 @@ const CardHospital = () => {
               <a href='/moreInformation5' className='btn btn-info'>Más información</a>
             </Card.Body>
           </Card>
-          <Card className="p-4 text-center">
+          <Card className="m-3 text-center">
             <Card.Img
               variant="top"
               style={{ height: "210px" }}
@@ -78,7 +78,7 @@ const CardHospital = () => {
               <a href='/moreInformation6' className='btn btn-info'>Más información</a>
             </Card.Body>
           </Card>
-          <Card className="p-4 text-center">
+          <Card className="m-3 text-center">
             <Card.Img
               variant="top"
               style={{ height: "210px" }}
@@ -89,7 +89,7 @@ const CardHospital = () => {
               <a href='/moreInformation7' className='btn btn-info'>Más información</a>
             </Card.Body>
           </Card>
-          <Card className="p-4 text-center">
+          <Card className="m-3 text-center">
             <Card.Img
               variant="top"
               style={{ height: "210px" }}
