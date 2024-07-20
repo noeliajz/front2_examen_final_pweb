@@ -21,7 +21,7 @@ const StudyPage = () => {
   return (
     <>
       <NavbarComponents/>
-      <main className="AllProducts">
+      <main className="AllProducts" style={{paddingTop:"40px", background:"#E1F7F5"}}>
         <h2 className="text-center p-3">Estudios médicos</h2>
         <Link to='/newStudyUser' style={{margin:"30px"}} className="btn btn-info">Nuevo Estudio Médico</Link>
         <div className="container">

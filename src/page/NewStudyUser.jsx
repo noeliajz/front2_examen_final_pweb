@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/esm/Col';
 import Swal from 'sweetalert2';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Footer from '../components/Footer';
 
 const NewStudyUser = () => {
   const [inputCheckName, setInputCheckName] = useState(false);
@@ -78,9 +79,9 @@ const NewStudyUser = () => {
   return (
     <>
       <NavbarComponentsAdmin />
-      <Container>
+      <Container fluid style={{paddingTop:"40px", background:"#E1F7F5"}}>
         <Row className="justify-content-center" style={{ paddingTop: '25px' }}>
-          <Col sm={12} md={5} lg={8}>
+          <Col sm={12} md={5} lg={6} className='py-3'>
             <Form>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Ingresar número de estudio médico</Form.Label>
@@ -113,6 +114,7 @@ const NewStudyUser = () => {
           </Col>
         </Row>
       </Container>
+      <Footer/>
     </>
   );
 };

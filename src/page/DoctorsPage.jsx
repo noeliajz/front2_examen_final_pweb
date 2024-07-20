@@ -25,7 +25,7 @@ const DoctorsPage = () => {
   return (
     <>
       <NavbarComponents/>
-      <main className='AllProducts'>
+      <main className='AllProducts' style={{paddingTop:"40px", background:"#E1F7F5"}}>
       <h2 className='text-center p-3'>Médicos a los que acudis</h2> 
       <div className='container'>
           <div className="row py-4">
