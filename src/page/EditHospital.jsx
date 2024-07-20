@@ -21,20 +21,21 @@ const EditHospital = () => {
   });
 
   useEffect(() => {
-    gethospital();
+    // Fetch hospital data on component mount
+    getHospital();
   }, [params.id]);
 
-  const gethospital = async () => {
+  const getHospital = async () => {
     try {
-      const token = localStorage.getItem("token")
+      const token = localStorage.getItem("token");
       const res = await fetch(`http://localhost:8080/api/hospital/${params.id}`, {
-        headers: {'authorization': `Bearer ${token}`  }
+        headers: { 'Authorization': `Bearer ${token}` }
       });
       if (!res.ok) {
-        throw new Error('No se pudo obtener el hospital o sanatorio');
+        throw new Error('No se pudo obtener el hospital');
       }
       const data = await res.json();
-      setHospital(data.gethospital);
+      setHospital(data.gethospital); // Set hospital data
       setFormValues({
         nombre: data.gethospital.nombre || '',
         direccion: data.gethospital.direccion || '',
@@ -43,11 +44,11 @@ const EditHospital = () => {
         notas: data.gethospital.notas || ''
       });
     } catch (error) {
-      console.error('Error al obtener hospital o sanatorio:', error);
+      console.error('Error al obtener hospital:', error);
       Swal.fire({
         icon: 'error',
-        title: 'Error al obtener hospital o sanatorio',
-        text: error.message 
+        title: 'Error al obtener hospital',
+        text: error.message
       });
     }
   };
@@ -64,7 +65,7 @@ const EditHospital = () => {
     ev.preventDefault();
     if (formValues.nombre === '' || formValues.direccion === '' || formValues.telefono === '' || formValues.guardia === '' || formValues.notas === '') {
       Swal.fire({
-        position: "top", 
+        position: "top",
         icon: "error",
         title: "Formulario incompleto!",
         showConfirmButton: false,
@@ -75,35 +76,29 @@ const EditHospital = () => {
         const res = await fetch(`http://localhost:8080/api/hospital/${params.id}`, {
           method: 'PUT',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem("token")}`
           },
-          body: JSON.stringify({
-            nombre: formValues.nombre,
-            direccion: formValues.direccion,
-            telefono: formValues.telefono,
-            guardia: formValues.guardia,
-            notas: formValues.notas
-          })
+          body: JSON.stringify(formValues)
         });
         if (!res.ok) {
-          throw new Error('Error al actualizar el hospital o sanatorio');
+          throw new Error('Error al actualizar el hospital');
         }
-        const resUpdateHospital = await res.json();
-
+        await res.json(); 
         Swal.fire({
-          position: "top", 
-          title: "Hospital o sanatorio actualizado",
-          text: "El hospital o sanatorio se actualizó correctamente.",
+          position: "top",
+          title: "Hospital actualizado",
+          text: "El hospital se actualizó correctamente.",
           icon: "success",
-          confirmButtonText: "Confirmar",
-          reverseButtons: true,
+          showConfirmButton: false,
+          timer: 1300  
         });
 
       } catch (error) {
-        console.error('Error al actualizar el hospital o sanatorio:', error);
+        console.error('Error al actualizar el hospital:', error);
         Swal.fire({
           icon: 'error',
-          title: 'Error al actualizar hospital o sanatorio',
+          title: 'Error al actualizar hospital',
           text: error.message
         });
       }
@@ -118,56 +113,56 @@ const EditHospital = () => {
           <Col sm={12} md={5} lg={8}>
             <Form>
               <Form.Group className="mb-3" controlId="formBasicNombre">
-                <Form.Label>Ingresar nombres</Form.Label>
+                <Form.Label>Ingresar nombre</Form.Label>
                 <Form.Control
                   name="nombre"
                   value={formValues.nombre}
                   onChange={handleChange}
-                  className={inputCheckName ? 'form-control is-invalid' : 'form-control'}
+                  className="form-control"
                   type="text"
                   placeholder=""
                 />
               </Form.Group>
-              <Form.Group className="mb-3" controlId="formBasicApellido">
-                <Form.Label>Ingresar direccion</Form.Label>
+              <Form.Group className="mb-3" controlId="formBasicDireccion">
+                <Form.Label>Ingresar dirección</Form.Label>
                 <Form.Control
                   name="direccion"
                   value={formValues.direccion}
                   onChange={handleChange}
-                  className={inputCheckName ? 'form-control is-invalid' : 'form-control'}
+                  className="form-control"
                   type="text"
                   placeholder=""
                 />
               </Form.Group>
-              <Form.Group className="mb-3" controlId="formBasicApellido">
-                <Form.Label>Ingresar telefono</Form.Label>
+              <Form.Group className="mb-3" controlId="formBasicTelefono">
+                <Form.Label>Ingresar teléfono</Form.Label>
                 <Form.Control
                   name="telefono"
                   value={formValues.telefono}
                   onChange={handleChange}
-                  className={inputCheckName ? 'form-control is-invalid' : 'form-control'}
+                  className="form-control"
                   type="text"
                   placeholder=""
                 />
               </Form.Group>
-              <Form.Group className="mb-3" controlId="formBasicApellido">
+              <Form.Group className="mb-3" controlId="formBasicGuardia">
                 <Form.Label>Ingresar especialidad de guardia</Form.Label>
                 <Form.Control
                   name="guardia"
                   value={formValues.guardia}
                   onChange={handleChange}
-                  className={inputCheckName ? 'form-control is-invalid' : 'form-control'}
+                  className="form-control"
                   type="text"
                   placeholder=""
                 />
               </Form.Group>
-              <Form.Group className="mb-3" controlId="formBasicApellido">
+              <Form.Group className="mb-3" controlId="formBasicNotas">
                 <Form.Label>Ingresar notas</Form.Label>
                 <Form.Control
                   name="notas"
                   value={formValues.notas}
                   onChange={handleChange}
-                  className={inputCheckName ? 'form-control is-invalid' : 'form-control'}
+                  className="form-control"
                   type="text"
                   placeholder=""
                 />
