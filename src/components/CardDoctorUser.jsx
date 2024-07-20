@@ -7,7 +7,7 @@ const CardDoctorUser = () => {
   return (
     <>
       <div>
-        <CardGroup className="p-3">
+        <CardGroup style={{paddingTop: "50px"}}>
           <Card className="p-4 text-center">
             <Card.Img
               variant="top" style={{height:"210px"}}

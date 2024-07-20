@@ -7,11 +7,9 @@ import '../css/CarouselComponents.css'
 
 const CarouselComponents = () => {
   return (
-    <>
-     
+    <>     
       <Carousel>
       <Carousel.Item>
-        
         <img src={imagen} alt=""  className="d-block w-100" height={450}/>
         <Carousel.Caption>
           <h3 className="fs-1" style={{color:"#E1F7F5", textShadow: "1px 1px 0px #0E46A3"}}>Tene siempre disponible tu información médica</h3>

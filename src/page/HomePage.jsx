@@ -11,8 +11,8 @@ const HomePage = () => {
      <NavbarComponentsAdmin/>
      <div style={{background:"#E1F7F5"}}>
      <CarouselComponents/>
-     <h1 className='text-center p-5'>Bienvenidos a Salud organizada! </h1>
-     <h3 className='p-3'>Te ofremos:</h3>
+     <h1 className='text-center py-5'>Bienvenidos a Salud organizada! </h1>
+     <h3 className='p-5'>Te ofremos:</h3>
      <CardServicioHome/>
      </div>
      <Footer/>
