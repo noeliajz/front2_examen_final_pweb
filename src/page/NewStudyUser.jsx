@@ -81,7 +81,7 @@ const NewStudyUser = () => {
       <NavbarComponentsAdmin />
       <Container fluid style={{paddingTop:"40px", background:"#E1F7F5"}}>
         <Row className="justify-content-center" style={{ paddingTop: '25px' }}>
-          <Col sm={12} md={5} lg={6} className='py-3'>
+          <Col sm={12} md={5} lg={6} className='py-4'>
             <Form>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Ingresar número de estudio médico</Form.Label>
