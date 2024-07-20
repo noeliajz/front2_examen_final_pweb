@@ -18,8 +18,8 @@ const EditStudies = () => {
   });
 
   useEffect(() => {
-    getestudioMedico(); // Llamar a la función para obtener el estudio médico al cargar el componente
-  }, [params.id]); // Dependencia params.id para que useEffect se ejecute cuando cambie el ID en la URL
+    getestudioMedico(); 
+  }, [params.id]); 
 
   const getestudioMedico = async () => {
     try {
@@ -28,7 +28,7 @@ const EditStudies = () => {
         throw new Error('No se pudo obtener el estudio médico');
       }
       const data = await res.json();
-      setEstudio(data.getestudioMedico); // Actualizar el estado con los datos del estudio médico obtenidos
+      setEstudio(data.getestudioMedico); 
       setFormValues({
         numeroEstudio: data.getestudioMedico.numeroEstudio || '',
         paginaWeb: data.getestudioMedico.paginaWeb || ''
@@ -79,11 +79,12 @@ const EditStudies = () => {
         const resUpdateEstudio = await res.json();
 
         Swal.fire({
-          title: "Estudio actualizado",
+          position: "top",
+          title: "Estudio médico actualizado",
           text: "El estudio se actualizó correctamente.",
           icon: "success",
-          confirmButtonText: "Confirmar",
-          reverseButtons: true,
+          showConfirmButton: false,
+          timer: 1300  
         });
 
       } catch (error) {

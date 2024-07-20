@@ -83,13 +83,13 @@ const EditStudies = () => {
         if (!res.ok) {
           throw new Error('Error al actualizar el usuario');
         }
-        // Actualización exitosa
         Swal.fire({
+          position: "top",
           title: "Usuario actualizado",
           text: "El usuario se actualizó correctamente.",
           icon: "success",
-          confirmButtonText: "Confirmar",
-          reverseButtons: true,
+          showConfirmButton: false,
+          timer: 1300  
         });
       } catch (error) {
         console.error('Error al actualizar usuario:', error);

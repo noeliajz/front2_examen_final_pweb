@@ -88,12 +88,12 @@ const EditDoctor = () => {
         const resUpdateDoctor = await res.json();
 
         Swal.fire({
-          position: "top", // Cambiado de "top-center" a "top"
-          title: "Doctor/a actualizado",
+          position: "top",
+          title: "doctor actualizado",
           text: "El doctor/a se actualizó correctamente.",
           icon: "success",
-          confirmButtonText: "Confirmar",
-          reverseButtons: true,
+          showConfirmButton: false,
+          timer: 1300  
         });
 
       } catch (error) {
