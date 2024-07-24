@@ -50,6 +50,8 @@ const FormLogin = () => {
           if (data.userExist) {
             localStorage.setItem('token', data.userExist.token);
             localStorage.setItem('role', data.userExist.role);
+            localStorage.setItem('idAgenda', data.userExist.idAgenda);
+            console.log(data.userExist)
             if (data.userExist.role === 'admin') {
               navigate('/adminPage');
             } else if (data.userExist.role === 'user') {

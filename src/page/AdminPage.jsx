@@ -10,10 +10,11 @@ const AdminPage = () => {
   return (
     <>
       <NavbarComponentsAdmin/>
-      <h1 className="text-center" style={{ padding: "45px" }}>
-        Administrador
+      <div style={{background:"#E1F7F5"}}>
+       <h1 className="text-center" style={{ padding: "45px" }}> Administrador</h1>
         <CardAdmin/>
-      </h1>
+      </div>
+      
       
     </>
   );

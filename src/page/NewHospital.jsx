@@ -26,6 +26,8 @@ const NewHospital = () => {
 
   const handleClick = async (ev) => {
     ev.preventDefault();
+    const token = JSON.parse(localStorage.getItem("token"));
+
     if (
       formValues.nombre === '' ||
       formValues.direccion === '' || 
@@ -46,7 +48,8 @@ const NewHospital = () => {
       const res = await fetch(`http://localhost:8080/api/hospital`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
           nombre: formValues.nombre,
@@ -57,10 +60,7 @@ const NewHospital = () => {
         })
       });
       const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.msg.map(error => error.msg).join('\n'));
-      }
-
+     
       Swal.fire({
         title: 'Nuevo hospital o sanatorio',
         text: 'Se agregó correctamente.',

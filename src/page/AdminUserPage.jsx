@@ -35,8 +35,7 @@ const AdminUserPage = () => {
     } catch (error) {
       console.error("Error fetching users:", error);
     }
-  }
-  
+  };
 
   const deleteUser = async (id) => {
     const token = localStorage.getItem("token");
@@ -66,35 +65,44 @@ const AdminUserPage = () => {
               method: "DELETE",
               headers: {
                 "Content-Type": "application/json",
-                'authorization': `Bearer ${token}`,
+                authorization: `Bearer ${token}`,
               },
             });
 
             if (res.ok) {
-              swalWithBootstrapButtons.fire(
-                "¡Borrado!",
-                "El usuario ha sido borrado.",
-                "success"
-              );
+              Swal.fire({      
+                position: "top-center",
+                icon: "success",
+                title: "Borrado",
+                text: "El usuario ha sido borrado",
+                showConfirmButton: false,
+                timer: 1370
+              });
               setRefreshUsers(true); // Trigger refresh of users
             } else {
               const errorText = await res.text();
               throw new Error(errorText);
             }
           } catch (error) {
-            swalWithBootstrapButtons.fire(
-              "Error",
-              "Ocurrió un error al intentar borrar el usuario.",
-              "error"
-            );
+            Swal.fire({
+              position: "top",
+              title: "Ocurrió un error al intentar borrar el usuario.",
+              text: error.message,
+              icon: "error",
+              showConfirmButton: false,
+              timer: 1370,
+            });
             console.error("Error deleting user:", error);
           }
         } else if (result.dismiss === Swal.DismissReason.cancel) {
-          swalWithBootstrapButtons.fire(
-            "Cancelado",
-            "El usuario está a salvo :)",
-            "error"
-          );
+          Swal.fire({      
+            position: "top-center",
+            icon: "error",
+            title: "Cancelado",
+            text: "El usuario está a salvo",
+            showConfirmButton: false,
+            timer: 1350
+          });
         }
       });
   };
@@ -107,68 +115,54 @@ const AdminUserPage = () => {
   return (
     <>
       <NavbarComponentsAdmin />
-      <h3 className="text-center">Usuarios</h3>
-      <Container fluid>
-        <Row>
-          <Col>
-            <div>
-              <Link to="/newUser" className="btn btn-success m-5">
-                Agregar
-              </Link>
-            </div>
-            <div>
-              <Form className="m-4">
-                <Row>
-                  <Col xs="auto">
-                    <Form.Control
-                      type="text"
-                      placeholder="Ingresar usuario"
-                      className=" mr-sm-2"
-                    />
-                  </Col>
-                  <Col xs="auto">
-                    <Button type="submit">Buscar</Button>
-                  </Col>
-                </Row>
-              </Form>
-            </div>
-            <Table responsive striped bordered hover className="text-center">
-              <thead>
-                <tr>
-                  <th>USUARIO</th>
-                  <th>ROL</th>
-                  <th>OBRA SOCIAL</th>
-                  <th>ACCIONES</th>
-                </tr>
-              </thead>
-              <tbody>
-                {allUsers.map((user) => (
-                  <tr key={user._id}>
-                    <td>{user.usuario}</td>
-                    <td>{user.role}</td>
-                    <td>{user.obraSocial}</td>
-                    <td>
-                      <Link
-                        to={`/editUser/${user._id}`}
-                        className="btn btn-warning"
-                      >
-                        {" "}
-                        Editar
-                      </Link>
-                      <button
-                        className="btn btn-danger mx-2"
-                        onClick={() => deleteUser(user._id)}
-                      >
-                        Borrar
-                      </button>
-                    </td>
+      <div style={{ background: "#0E46A3", padding: "20px" }}>
+        <Container style={{background:"#E1F7F5"}}>
+        <h3 className="text-center pt-3">Usuarios</h3>
+          <Row>
+            <Col>
+              <div>
+                <Link to="/newUser" className="btn btn-success m-5">
+                  Agregar
+                </Link>
+              </div>
+              <Table responsive striped bordered hover className="text-center">
+                <thead>
+                  <tr>
+                    <th>USUARIO</th>
+                    <th>ROL</th>
+                    <th>OBRA SOCIAL</th>
+                    <th>ACCIONES</th>
                   </tr>
-                ))}
-              </tbody>
-            </Table>
-          </Col>
-        </Row>
-      </Container>
+                </thead>
+                <tbody>
+                  {allUsers.map((user) => (
+                    <tr key={user._id}>
+                      <td>{user.usuario}</td>
+                      <td>{user.role}</td>
+                      <td>{user.obraSocial}</td>
+                      <td>
+                        <Link
+                          to={`/editUser/${user._id}`}
+                          className="btn btn-warning"
+                        >
+                          {" "}
+                          Editar
+                        </Link>
+                        <button
+                          className="btn btn-danger mx-2"
+                          onClick={() => deleteUser(user._id)}
+                        >
+                          Borrar
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </Col>
+          </Row>
+        </Container>
+      </div>
     </>
   );
 };
