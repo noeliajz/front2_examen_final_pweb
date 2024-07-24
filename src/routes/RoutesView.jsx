@@ -30,12 +30,12 @@ import EditUser from '../page/EditUser'
 import EditStudies from '../page/EditStudies'
 import NewUser from '../page/NewUser'
 import NewStudy from '../page/NewStudy'
-import NewHospital from '../page/NewHospital'
 import Prueba from '../page/Prueba'
 import Prueba2 from '../page/prueba2'
 import NewDoctor from '../page/NewDoctor'
 import NewDoctorUser from '../page/NewDoctorUser'
 import NewStudyUser from '../page/NewStudyUser'
+import NewHospital from '../page/NewHospital'
 
 const RoutesView = () => {
   return (
