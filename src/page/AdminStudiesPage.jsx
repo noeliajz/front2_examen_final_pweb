@@ -46,7 +46,7 @@ const AdminStudiesPage = () => {
         if (result.isConfirmed) {
           try {
             const res = await fetch(
-              `http://localhost:8080/api/estudioMedico/${id}`,
+              `http://localhost:3000/api/estudioMedico/${id}`,
               {
                 method: "DELETE",
                 headers: {

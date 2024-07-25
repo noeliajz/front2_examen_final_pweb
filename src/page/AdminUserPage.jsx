@@ -17,7 +17,7 @@ const AdminUserPage = () => {
     const token = localStorage.getItem("token");
 
     try {
-      const res = await fetch("http://localhost:8080/api/users", {
+      const res = await fetch("http://localhost:3000/api/users", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -61,7 +61,7 @@ const AdminUserPage = () => {
       .then(async (result) => {
         if (result.isConfirmed) {
           try {
-            const res = await fetch(`http://localhost:8080/api/users/${id}`, {
+            const res = await fetch(`http://localhost:3000/api/users/${id}`, {
               method: "DELETE",
               headers: {
                 "Content-Type": "application/json",

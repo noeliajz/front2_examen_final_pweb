@@ -13,10 +13,10 @@ const AdminallDoctoresPage = () => {
   const [refreshAllDoctores, setRefreshAllDoctores] = useState(false);
 
   const getAllDoctores = async () => {
-    const res = await clienteAxios.get("/doctor");
-    const { allDoctores } = res.data;
-    setAllDoctores(allDoctores);
-  };
+    const res = await clienteAxios.get("/doctor")
+    const { allDoctores } = res.data
+    setAllDoctores(allDoctores)
+  }
 
   const deleteDoctor = async (id) => {
     const token = localStorage.getItem("token");
@@ -41,7 +41,7 @@ const AdminallDoctoresPage = () => {
       .then(async (result) => {
         if (result.isConfirmed) {
           try {
-            const res = await fetch(`http://localhost:8080/api/doctor/${id}`, {
+            const res = await fetch(`http://localhost:3000/api/doctor/${id}`, {
               method: "DELETE",
               headers: {
                 "Content-Type": "application/json",
