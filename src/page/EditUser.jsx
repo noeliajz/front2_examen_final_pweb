@@ -25,7 +25,7 @@ const EditStudies = () => {
   const getUser = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`http://localhost:8080/api/users/${params.id}`, {
+      const res = await fetch(`http://localhost:3000/api/users/${params.id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (!res.ok) {

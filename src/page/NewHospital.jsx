@@ -45,7 +45,7 @@ const NewHospital = () => {
       return;
     }
     try {
-      const res = await fetch(`http://localhost:8080/api/hospital`, {
+      const res = await fetch(`http://localhost:3000/api/hospital`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

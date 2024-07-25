@@ -44,8 +44,7 @@ const NewUser = () => {
     }
    
     try {
-      const res = await fetch(`http://localhost:8080/api/doctor/idUser/idDoctor`, {
-        /* le agrego al final la ruta /idUser/idDoctor para agregar un medico a un usuario */
+      const res = await fetch(`http://localhost:3000/api/doctor/idUser/idDoctor`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

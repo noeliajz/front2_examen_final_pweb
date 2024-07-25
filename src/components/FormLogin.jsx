@@ -55,7 +55,7 @@ const FormLogin = () => {
             if (data.userExist.role === 'admin') {
               navigate('/adminPage');
             } else if (data.userExist.role === 'user') {
-              navigate('/doctorUser');
+              navigate('/amedicalspecialty');
             }
           } else {
             console.error("Usuario no encontrado o credenciales incorrectas");

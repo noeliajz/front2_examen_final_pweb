@@ -8,9 +8,15 @@ import { Link } from "react-router-dom";
 const StudyPage = () => {
   const [studies, setStudies] = useState([]);
   const getAllestudioMedico = async () => {
-    const res = await axios.get("http://localhost:8080/api/estudioMedico");
-    const { allestudioMedico } = res.data;
-    setStudies(allestudioMedico);
+    const idAgenda =  localStorage.getItem('idAgenda')
+    const token =  localStorage.getItem('token')
+    const res = await axios.get(`http://localhost:3000/api/agenda/${idAgenda}`, {
+      headers: {
+        Authorization: 'Bearer ' + token
+      }
+    })
+    const { estudioMedico } = res.data.getestudioMedico
+    setStudies(estudioMedico)
   };
 
   useEffect(() => {

@@ -26,7 +26,7 @@ const EditDoctor = () => {
 
   const getDoctor = async () => {
     try {
-      const res = await fetch(`http://localhost:8080/api/doctor/${params.id}`);
+      const res = await fetch(`http://localhost:3000/api/doctor/${params.id}`);
       if (!res.ok) {
         throw new Error("No se pudo obtener el médico");
       }

@@ -19,7 +19,7 @@ const FormRegister = () => {
     event.preventDefault();
     if (formInputs.pass === formInputs.repeatPass) {
       try {
-        const res = await fetch("http://localhost:8080/api/users", {
+        const res = await fetch("http://localhost:3000/api/users", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
