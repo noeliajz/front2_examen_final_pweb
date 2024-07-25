@@ -34,7 +34,7 @@ const NewStudy = () => {
       return;
     }
     try {
-      const res = await fetch(`http://localhost:8080/api/estudioMedico`, {
+      const res = await fetch(`http://localhost:3000/api/estudioMedico`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

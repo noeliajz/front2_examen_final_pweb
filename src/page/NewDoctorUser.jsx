@@ -44,7 +44,7 @@ const NewDoctorUser = () => {
       return;
     }
     try {
-      const res = await fetch(`http://localhost:8080/api/doctor`, {
+      const res = await fetch(`http://localhost:3000/api/doctor`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

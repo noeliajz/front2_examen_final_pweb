@@ -29,7 +29,7 @@ const EditHospital = () => {
     try {
       const token = localStorage.getItem("token");
       const res = await fetch(
-        `http://localhost:8080/api/hospital/${params.id}`,
+        `http://localhost:3000/api/hospital/${params.id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

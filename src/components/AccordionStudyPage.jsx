@@ -8,16 +8,16 @@ const AccordionStudyPage = ({array}) => {
         (allestudioMedico) => (
           <Accordion
             defaultActiveKey={["0"]}
-            key={allestudioMedico._id}
+            key={allestudioMedico?._id}
             alwaysOpen
             style={{ padding: "10px" }}
           >
              <Accordion.Item eventKey="0">
               <Accordion.Header>Número de estudio: 
-              {allestudioMedico.numeroEstudio}
+              {allestudioMedico?.numeroEstudio}
               </Accordion.Header>
               <Accordion.Body>
-                <h5>Página donde puedo ver el resultado: {allestudioMedico.paginaWeb}</h5>
+                <h5>Página donde puedo ver el resultado: {allestudioMedico?.paginaWeb}</h5>
               </Accordion.Body>
              </Accordion.Item>
           </Accordion>

@@ -24,7 +24,7 @@ const EditStudies = () => {
   const getestudioMedico = async () => {
     try {
       const res = await fetch(
-        `http://localhost:8080/api/estudioMedico/${params.id}`
+        `http://localhost:3000/api/estudioMedico/${params.id}`
       );
       if (!res.ok) {
         throw new Error("No se pudo obtener el estudio médico");
