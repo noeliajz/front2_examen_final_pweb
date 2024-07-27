@@ -96,7 +96,7 @@ const FormRegister = () => {
   };
 
   return (
-    <div className="d-flex py-5 justify-content-center">
+    <div className="d-flex py-5 justify-content-center"  style={{ background: "#E1F7F5" }}>
       <form className="w-50" onSubmit={handleSubmit}>
         <h2 className="form_tittle">Crea una Cuenta</h2>
         <div className="form_container">
@@ -156,7 +156,7 @@ const FormRegister = () => {
               placeholder=" "
             />
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn" style={{background:"#0E46A3", color:"#E1F7F5"}} >
             Enviar
           </button>
         </div>

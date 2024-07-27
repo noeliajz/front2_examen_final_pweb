@@ -9,7 +9,7 @@ const MoreInformation3 = () => {
   return (
     <>
       <NavbarComponents/>
-      <Container>
+      <Container fluid style={{ background: "#E1F7F5" }}>
         <Row className="fs-5 justify-content-center" style={{padding:"100px"}}>
           <Col className="d-flex " sm={12} lg={5} md={5}>
             <iframe

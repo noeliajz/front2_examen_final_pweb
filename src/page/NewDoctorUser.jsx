@@ -152,7 +152,7 @@ const NewDoctorUser = () => {
                 />
               </Form.Group>
               <div className="text-center">
-                <Button onClick={handleClick} style={{ margin: '5px' }} variant="primary" type="submit">
+                <Button onClick={handleClick} style={{margin: "5px" ,background:"#0E46A3", color:"#E1F7F5"}}  variant="primary" type="submit">
                   Guardar
                 </Button>
               </div>

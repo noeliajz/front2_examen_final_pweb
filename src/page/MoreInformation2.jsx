@@ -9,7 +9,7 @@ const MoreInformation2 = () => {
   return (
     <>
       <NavbarComponents/>
-      <Container>
+      <Container fluid style={{ background: "#E1F7F5" }}>
         <Row className=" fs-5 justify-content-center" style={{padding:"100px"}}>
           <Col className="d-flex " sm={12} lg={5} md={5}>
             <iframe
@@ -22,7 +22,7 @@ const MoreInformation2 = () => {
           </Col>
           <Col className="d-flex " sm={12} lg={4} md={4}>
             <ul>
-            <a href="https://www.google.com/maps/dir/-26.8582903,-65.2282393/Hospital+%C3%81ngel+C.+Padilla,+Juan+Bautista+Alberdi+550,+T4000+San+Miguel+de+Tucum%C3%A1n,+Tucum%C3%A1n/@-26.8448946,-65.2295379,15z/data=!3m1!4b1!4m18!1m7!3m6!1s0x94225c72c546fea5:0x46d0cbcf03b07ca3!2sHospital+%C3%81ngel+C.+Padilla!8m2!3d-26.8363582!4d-65.2157979!16s%2Fg%2F1tltngcf!4m9!1m1!4e1!1m5!1m1!1s0x94225c72c546fea5:0x46d0cbcf03b07ca3!2m2!1d-65.2157979!2d-26.8363582!3e3?entry=ttu" className="btn btn-info m-2">Cómo llegar</a>
+            <a href="https://www.google.com/maps/dir/-26.8582903,-65.2282393/Hospital+%C3%81ngel+C.+Padilla,+Juan+Bautista+Alberdi+550,+T4000+San+Miguel+de+Tucum%C3%A1n,+Tucum%C3%A1n/@-26.8448946,-65.2295379,15z/data=!3m1!4b1!4m18!1m7!3m6!1s0x94225c72c546fea5:0x46d0cbcf03b07ca3!2sHospital+%C3%81ngel+C.+Padilla!8m2!3d-26.8363582!4d-65.2157979!16s%2Fg%2F1tltngcf!4m9!1m1!4e1!1m5!1m1!1s0x94225c72c546fea5:0x46d0cbcf03b07ca3!2m2!1d-65.2157979!2d-26.8363582!3e3?entry=ttu" className="btn m-2" style={{background:"#0E46A3", color:"#E1F7F5"}}>Cómo llegar</a>
               <li>
                 Dirección: San Juan 550, T4000 San Miguel de Tucumán, Tucumán
               </li>

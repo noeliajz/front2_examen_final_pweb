@@ -9,7 +9,7 @@ const MoreInformation6 = () => {
   return (
     <>
       <NavbarComponents/>
-      <Container>
+      <Container fluid style={{ background: "#E1F7F5" }}>
         <Row className=" fs-5 justify-content-center" style={{padding:"100px"}}>
           <Col className="d-flex " sm={12} lg={5} md={5}>           
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.023923179774!2d-65.20627802556396!3d-26.839191390134122!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94225c08970f659f%3A0x1f189a5269333875!2sSanatorio%20del%20Sur%20S.A!5e0!3m2!1ses-419!2sar!4v1720491991905!5m2!1ses-419!2sar" style={{ width: "360", height: "360", border: "0" }} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
