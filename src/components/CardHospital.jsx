@@ -16,7 +16,7 @@ const CardHospital = () => {
             />
             <Card.Body>
               <Card.Title>Hospital Padilla</Card.Title>           
-                  <a href='/moreInformation2' className='btn btn-info'>Más información</a>
+                  <a href='/moreInformation2' className='btn' style={{background:"#0E46A3", color:"#E1F7F5"}} >Más información</a>
            </Card.Body>
           </Card>
           <Card className="m-3 text-center">
@@ -27,7 +27,7 @@ const CardHospital = () => {
             />
             <Card.Body>
               <Card.Title>Hospital Avellaneda</Card.Title>
-              <a href='/moreInformation' className='btn btn-info'>Más información</a>
+              <a href='/moreInformation' className='btn ' style={{background:"#0E46A3", color:"#E1F7F5"}}>Más información</a>
               </Card.Body>
           </Card>
           <Card className="m-3 text-center">
@@ -38,7 +38,7 @@ const CardHospital = () => {
             />
             <Card.Body>
               <Card.Title>Centro de salud</Card.Title>
-              <a href='/moreInformation3' className='btn btn-info'>Más información</a>
+              <a href='/moreInformation3' className='btn' style={{background:"#0E46A3", color:"#E1F7F5"}}>Más información</a>
             </Card.Body>
           </Card>
           <Card className="m-3 text-center">
@@ -49,7 +49,7 @@ const CardHospital = () => {
             />
             <Card.Body>
               <Card.Title>Hospital Eva</Card.Title>
-              <a href='/moreInformation4' className='btn btn-info'>Más información</a>
+              <a href='/moreInformation4' className='btn ' style={{background:"#0E46A3", color:"#E1F7F5"}}>Más información</a>
             </Card.Body>
           </Card>
         </CardGroup>
@@ -64,7 +64,7 @@ const CardHospital = () => {
             />
             <Card.Body>
               <Card.Title>Sanatorio Modelo</Card.Title>
-              <a href='/moreInformation5' className='btn btn-info'>Más información</a>
+              <a href='/moreInformation5' className='btn ' style={{background:"#0E46A3", color:"#E1F7F5"}}>Más información</a>
             </Card.Body>
           </Card>
           <Card className="m-3 text-center">
@@ -75,7 +75,7 @@ const CardHospital = () => {
             />
             <Card.Body>
               <Card.Title>Sanatorio del Sur</Card.Title>
-              <a href='/moreInformation6' className='btn btn-info'>Más información</a>
+              <a href='/moreInformation6' className='btn' style={{background:"#0E46A3", color:"#E1F7F5"}}>Más información</a>
             </Card.Body>
           </Card>
           <Card className="m-3 text-center">
@@ -86,7 +86,7 @@ const CardHospital = () => {
             />
             <Card.Body>
               <Card.Title>Sanatorio Rivadavia</Card.Title>
-              <a href='/moreInformation7' className='btn btn-info'>Más información</a>
+              <a href='/moreInformation7' className='btn' style={{background:"#0E46A3", color:"#E1F7F5"}}>Más información</a>
             </Card.Body>
           </Card>
           <Card className="m-3 text-center">
@@ -97,7 +97,7 @@ const CardHospital = () => {
             />
             <Card.Body>
               <Card.Title>Sanatorio Parque</Card.Title>
-              <a href='/moreInformation8' className='btn btn-info'>Más información</a>
+              <a href='/moreInformation8' className='btn' style={{background:"#0E46A3", color:"#E1F7F5"}}>Más información</a>
             </Card.Body>
           </Card>
         </CardGroup>

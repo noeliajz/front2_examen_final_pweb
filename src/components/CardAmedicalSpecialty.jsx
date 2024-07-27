@@ -10,8 +10,8 @@ const CardAmedicalSpecialty = () => {
   return (
     <>
       <div style={{padding: "40px", background:"#E1F7F5"}}>
-      <Link  to="/newDoctorUser" className="btn btn-info m-4" >Agregar nuevo dr/a</Link>{" "}
-      <Link to='/newStudyUser' style={{margin:"30px"}} className="btn btn-info">Nuevo Estudio Médico</Link>
+      <Link  to="/newDoctorUser" className="btn  m-4" style={{background:"#0E46A3", color:"#E1F7F5"}} >Agregar nuevo dr/a</Link>{" "}
+      <Link to='/newStudyUser'  className="btn " style={{background:"#0E46A3", color:"#E1F7F5" , margin:"30px"}} >Nuevo Estudio Médico</Link>
       <Container>
           <Row className=" py-3 fs-5 justify-content-center">
             <Col className="d-flex " sm={12} lg={10} md={5}>
@@ -24,7 +24,7 @@ const CardAmedicalSpecialty = () => {
               />
               <Card.Body>
                 <Card.Title>Drs</Card.Title>
-                <Link to="/doctorsPage" className="btn btn-info">Ingresar</Link>
+                <Link to="/doctorsPage" className="btn" style={{background:"#0E46A3", color:"#E1F7F5"}}>Ingresar</Link>
               </Card.Body>
             </Card>
             <Card className="m-3 text-center">
@@ -35,7 +35,7 @@ const CardAmedicalSpecialty = () => {
               />
               <Card.Body>
                 <Card.Title>Estudios Médicos</Card.Title>
-                <Link to="/studyPage" className="btn btn-info">Ingresar</Link>{" "}
+                <Link to="/studyPage" className="btn " style={{background:"#0E46A3", color:"#E1F7F5"}}>Ingresar</Link>{" "}
               </Card.Body>
             </Card>
               </CardGroup>

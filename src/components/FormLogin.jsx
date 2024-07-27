@@ -118,7 +118,7 @@ const FormLogin = () => {
                 placeholder=""
               />
             </Form.Group>
-            <Button variant="primary" onClick={handleClick} type="submit">
+            <Button  style={{background:"#0E46A3", color:"#E1F7F5"}}  onClick={handleClick} type="submit">
               Ingresar
             </Button>
           </Form>
