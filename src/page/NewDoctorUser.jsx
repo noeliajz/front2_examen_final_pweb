@@ -63,11 +63,12 @@ const NewDoctorUser = () => {
       }
 
       Swal.fire({
-        title: 'Nuevo doctor/a',
-        text: 'Se agregó correctamente.',
-        icon: 'success',
-        confirmButtonText: 'Confirmar',
-        reverseButtons: true,
+        position: "center",
+        icon: "success",
+        title: "Nuevo doctor/a",
+        text: "Se agregó correctamente "  ,
+        showConfirmButton: false,
+        timer: 1380,
       });
 
       setFormValues({

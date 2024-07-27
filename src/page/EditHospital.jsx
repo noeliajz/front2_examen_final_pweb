@@ -87,7 +87,7 @@ const EditHospital = () => {
     } else {
       try {
         const res = await fetch(
-          `http://localhost:8080/api/hospital/${params.id}`,
+          `http://localhost:3000/api/hospital/${params.id}`,
           {
             method: "PUT",
             headers: {
@@ -191,7 +191,8 @@ const EditHospital = () => {
                 </Form.Group>
                 <div className="text-center">
                   <Button
-                    style={{ margin: "5px" }}
+                    
+                    style={{margin: "5px", background:"#0E46A3", color:"#E1F7F5"}}
                     variant="primary"
                     onClick={handleClick}
                   >

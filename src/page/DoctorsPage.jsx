@@ -12,11 +12,12 @@ const DoctorsPage = () => {
   
   const getAllDoctor = async () => {
     const idAgenda =  localStorage.getItem('idAgenda');
+  const idDoctor =localStorage.getItem('idDoctor')
     console.log(idAgenda)
     const token =  localStorage.getItem('token');
     const res = await axios.get(`http://localhost:3000/api/agenda/${idAgenda}`, {
       headers: {
-        Authorization: 'Bearer ' + token
+        authorization: 'Bearer ' + token
       }
     })
     
@@ -49,5 +50,4 @@ return (
 };
 
 export default DoctorsPage;
-
 

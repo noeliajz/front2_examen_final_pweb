@@ -34,8 +34,8 @@ const CardAmedicalSpecialty = () => {
                 src="https://www.laguiatucuman.com/wp-content/uploads/2021/02/ortopedia-traumatologia-tucuman.jpg"
               />
               <Card.Body>
-                <Card.Title>Estudios Médicos</Card.Title>
-                <Link to="/studyPage" className="btn " style={{background:"#0E46A3", color:"#E1F7F5"}}>Ingresar</Link>{" "}
+                <Card.Title>Hospitales y sanatorios</Card.Title>
+                <Link to="/hospitalUser" className="btn " style={{background:"#0E46A3", color:"#E1F7F5"}}>Ingresar</Link>{" "}
               </Card.Body>
             </Card>
               </CardGroup>

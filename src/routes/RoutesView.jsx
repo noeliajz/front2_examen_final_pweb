@@ -18,24 +18,21 @@ import MoreInformation6 from '../page/MoreInformation6'
 import MoreInformation7 from '../page/MoreInformation7'
 import MoreInformation8 from '../page/MoreInformation8'
 import DoctorsPage from '../page/DoctorsPage'
-import StudyPage from '../page/StudyPage'
 import AdminPage from '../page/AdminPage'
 import AdminDoctorsPage from '../page/AdminDoctorsPage'
-import AdminStudiesPage from '../page/AdminStudiesPage'
 import AdminHospitalPage from '../page/AdminHospitalPage'
 import AdminUserPage from '../page/AdminUserPage'
 import EditDoctor from '../page/EditDoctor'
 import EditHospital from '../page/EditHospital'
 import EditUser from '../page/EditUser'
-import EditStudies from '../page/EditStudies'
 import NewUser from '../page/NewUser'
-import NewStudy from '../page/NewStudy'
 import Prueba from '../page/Prueba'
 import Prueba2 from '../page/prueba2'
 import NewDoctor from '../page/NewDoctor'
 import NewDoctorUser from '../page/NewDoctorUser'
-import NewStudyUser from '../page/NewStudyUser'
 import NewHospital from '../page/NewHospital'
+import HospitalUser from '../page/HospitalUser'
+
 
 const RoutesView = () => {
   return (
@@ -58,25 +55,19 @@ const RoutesView = () => {
       <Route path='/moreInformation7' element={<MoreInformation7/>}/>
       <Route path='/moreInformation8' element={<MoreInformation8/>}/>
       <Route path='/doctorsPage' element={<DoctorsPage/>}/>
-      <Route path='/studyPage' element={<StudyPage/>}/>
       <Route path='/adminPage' element={<AdminPage/>}/>
       <Route path='/adminUserPage' element={<AdminUserPage/>}/>
       <Route path='/adminDoctorsPage' element={<AdminDoctorsPage/>}/>
-      <Route path='/adminStudiesPage' element={<AdminStudiesPage/>}/>
       <Route path='/adminHospitalPage' element={<AdminHospitalPage/>}/>
       <Route path='/editDoctor/:id' element={<EditDoctor/>}/>
       <Route path='/editHospital/:id' element={<EditHospital/>}/>
       <Route path='/editUser/:id' element={<EditUser/>}/>
-      <Route path='/editStudies/:id' element={<EditStudies/>}/>
       <Route path='/newUser' element={<NewUser/>}/>
-      <Route path='/newStudy' element={<NewStudy/>}/>
       <Route path='/newHospital' element={<NewHospital/>}/>
       <Route path='/newDoctor' element={<NewDoctor/>}/>
       <Route path='/newDoctorUser' element={<NewDoctorUser/>}/>
-      <Route path='/newStudyUser' element={<NewStudyUser/>}/>
-      
+      <Route path='/hospitalUser' element={<HospitalUser/>}/>
 
-     
       <Route path='/prueba' element={<Prueba/>}/>
       <Route path='/prueba2' element={<Prueba2/>}/>
 

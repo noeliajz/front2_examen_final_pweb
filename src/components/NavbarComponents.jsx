@@ -35,7 +35,7 @@ const NavbarComponents = () => {
             {(role === "user" || role === "admin") && (
               <>
                 <Nav.Link href="/">Inicio</Nav.Link>
-                <Nav.Link href="/hospital">Hospitales</Nav.Link>
+                <Nav.Link href="/hospitalUser">Hospitales</Nav.Link>
                 <Nav.Link href="/amedicalspecialty">Doctores</Nav.Link>
                 <Nav.Link onClick={() => logoutUserFunction()} href="/">Cerrar sesión</Nav.Link>
               </>
