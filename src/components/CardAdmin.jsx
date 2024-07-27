@@ -16,7 +16,7 @@ const CardAdmin = () => {
             />
             <Card.Body>
               <Card.Title>Usuarios</Card.Title>
-              <Link to="/adminUserPage" className="btn btn-info">
+              <Link to="/adminUserPage" className="btn" style={{background:"#0E46A3", color:"#E1F7F5"}}>
                 Ingresar
               </Link>
             </Card.Body>
@@ -29,20 +29,7 @@ const CardAdmin = () => {
             />
             <Card.Body>
               <Card.Title>Doctores</Card.Title>
-              <Link to="/adminDoctorsPage" className="btn btn-info">
-                Ingresar
-              </Link>{" "}
-            </Card.Body>
-          </Card>
-          <Card className="p-4 text-center">
-            <Card.Img
-              variant="top"
-              style={{ height: "210px" }}
-              src="https://img.freepik.com/fotos-premium/equipo-medicina_53876-44693.jpg"
-            />
-            <Card.Body>
-              <Card.Title>Estudios </Card.Title>
-              <Link to="/adminStudiesPage" className="btn btn-info">
+              <Link to="/adminDoctorsPage" className="btn" style={{background:"#0E46A3", color:"#E1F7F5"}}>
                 Ingresar
               </Link>{" "}
             </Card.Body>
@@ -55,7 +42,7 @@ const CardAdmin = () => {
             />
             <Card.Body>
               <Card.Title>Hospitales</Card.Title>
-              <Link to="/adminHospitalPage" className="btn btn-info">
+              <Link to="/adminHospitalPage" className="btn " style={{background:"#0E46A3", color:"#E1F7F5"}}>
                 Ingresar
               </Link>{" "}
             </Card.Body>

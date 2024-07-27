@@ -102,8 +102,8 @@ const AdminallDoctoresPage = () => {
             <Col>
               <Link
                 to="/newDoctor"
-                className="btn btn-success"
-                style={{ margin: "20px" }}
+                className="btn " style={{margin: "20px", background:"#0E46A3", color:"#E1F7F5"}}
+                
               >
                 Agregar
               </Link>

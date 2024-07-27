@@ -8,6 +8,7 @@ const FormRegister = () => {
     pass: "",
     repeatPass: "",
     obraSocial: ""
+
   });
   const navigate = useNavigate();
 

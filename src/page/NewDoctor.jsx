@@ -160,7 +160,7 @@ const NewUser = () => {
                 <div className="text-center">
                   <Button
                     onClick={handleClick}
-                    style={{ margin: "5px" }}
+                    style={{margin: "5px", background:"#0E46A3", color:"#E1F7F5"}}
                     variant="primary"
                     type="submit"
                   >

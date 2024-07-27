@@ -76,7 +76,7 @@ const EditStudies = () => {
       try {
         const token = localStorage.getItem("token");
         const res = await fetch(
-          `http://localhost:8080/api/users/${params.id}`,
+          `http://localhost:3000/api/users/${params.id}`,
           {
             method: "PUT",
             headers: {
@@ -169,7 +169,8 @@ const EditStudies = () => {
                 </Form.Group>
                 <div className="text-center">
                   <Button
-                    style={{ margin: "5px" }}
+                    
+                    style={{margin: "5px", background:"#0E46A3", color:"#E1F7F5"}}
                     variant="primary"
                     onClick={handleClick}
                   >

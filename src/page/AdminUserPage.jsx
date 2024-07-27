@@ -121,7 +121,7 @@ const AdminUserPage = () => {
           <Row>
             <Col>
               <div>
-                <Link to="/newUser" className="btn btn-success m-5">
+                <Link to="/newUser" className="btn  m-5" style={{background:"#0E46A3", color:"#E1F7F5"}}>
                   Agregar
                 </Link>
               </div>
