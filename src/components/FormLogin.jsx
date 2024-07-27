@@ -5,6 +5,7 @@ import Col from "react-bootstrap/esm/Col";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const FormLogin = () => {
   const navigate = useNavigate();
@@ -59,9 +60,25 @@ const FormLogin = () => {
             }
           } else {
             console.error("Usuario no encontrado o credenciales incorrectas");
+            Swal.fire({
+              position: "center",
+              icon: "error",
+              title: "Error en la solicitud de login",
+              text: "Usuario no encontrado o credenciales incorrectas" ,
+              showConfirmButton: false,
+              timer: 1380,
+            });
           }
         } catch (error) {
           console.error("Error en la solicitud de login:", error);
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Error",
+            text: "Error en la solicitud de login: ", error ,
+            showConfirmButton: false,
+            timer: 1380,
+          });
         }
       } else {
         setPassInput(true);
@@ -112,4 +129,5 @@ const FormLogin = () => {
 };
 
 export default FormLogin;
+
 

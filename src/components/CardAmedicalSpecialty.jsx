@@ -11,6 +11,7 @@ const CardAmedicalSpecialty = () => {
     <>
       <div style={{padding: "40px", background:"#E1F7F5"}}>
       <Link  to="/newDoctorUser" className="btn btn-info m-4" >Agregar nuevo dr/a</Link>{" "}
+      <Link to='/newStudyUser' style={{margin:"30px"}} className="btn btn-info">Nuevo Estudio Médico</Link>
       <Container>
           <Row className=" py-3 fs-5 justify-content-center">
             <Col className="d-flex " sm={12} lg={10} md={5}>

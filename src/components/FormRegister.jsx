@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const FormRegister = () => {
   const [formInputs, setFormInputs] = useState({
@@ -34,9 +35,14 @@ const FormRegister = () => {
 
         if (res.ok) {
           const data = await res.json();
-
           if (res.status === 201) {
-            alert("Registro exitoso");
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Registro exitoso",
+              showConfirmButton: false,
+              timer: 1380,
+            });
             setFormInputs({
               user: "",
               pass: "",
@@ -47,18 +53,45 @@ const FormRegister = () => {
               navigate('/login');
             }, 3000);
           } else {
-            alert("Error en el registro: " + (data.message || "Ocurrió un error inesperado"));
+            Swal.fire({
+              position: "center",
+              icon: "error",
+              title: "Error en la solicitud de login",
+              text: "Error en el registro: " + data.message ,
+              showConfirmButton: false,
+              timer: 1380,
+            });
           }
         } else {
           const errorData = await res.json();
-          alert("Error en el registro: " + (errorData.message || "Ocurrió un error inesperado"));
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Error en la solicitud de login",
+            text: "Error en el registro: " + errorData.message ,
+            showConfirmButton: false,
+            timer: 1380,
+          });
         }
       } catch (error) {
         console.error("Error:", error);
-        alert("Error en el registro");
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          text: "Error en el registro: "  ,
+          showConfirmButton: false,
+          timer: 1380,
+        });
       }
     } else {
-      alert("Las contraseñas no coinciden");
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Error en la solicitud de login",
+        text: "Las contraseñas no coinciden" ,
+        showConfirmButton: false,
+        timer: 1380,
+      });
     }
   };
 
