@@ -37,77 +37,7 @@ const HospitalUser = () => {
     }
   };
 
-  const deletehospital = async (id) => {
-    const token = localStorage.getItem("token");
-
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: "btn btn-success",
-        cancelButton: "btn btn-danger",
-      },
-      buttonsStyling: false,
-    });
-
-    swalWithBootstrapButtons
-      .fire({
-        title: "¿Estás seguro?",
-        text: "¡No podrás revertir esto!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Eliminar",
-        cancelButtonText: "Cancelar!",
-        reverseButtons: true,
-      })
-      .then(async (result) => {
-        if (result.isConfirmed) {
-          try {
-            const res = await fetch(
-              `http://localhost:3000/api/hospital/${id}`,
-              {
-                method: "DELETE",
-                headers: {
-                  "Content-Type": "application/json",
-                  authorization: `Bearer ${token}`,
-                },
-              }
-            );
-            if (res.ok) {
-              Swal.fire({
-                position: "top",
-                title: "¡Borrado!",
-                text: "El hospital ha sido borrado.",
-                icon: "success",
-                showConfirmButton: false,
-                timer: 1370,
-              });
-              setRefreshallhospital(true); // Trigger refresh of allDoctores
-            } else {
-              const errorText = await res.text();
-              throw new Error(errorText);
-            }
-          } catch (error) {
-            Swal.fire({
-              position: "top",
-              title: "Error",
-              text: "Ocurrió un error al intentar borrar el hospital.",
-              icon: "error",
-              showConfirmButton: false,
-              timer: 1370,
-            });
-            console.error("Error deleting hospital:", error);
-          }
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-          Swal.fire({
-            position: "top",
-            title: "Cancelado",
-            text: "El hospital está a salvo",
-            icon: "error",
-            showConfirmButton: false,
-            timer: 1370,
-          });
-        }
-      });
-  };
+ 
 
   useEffect(() => {
     getAllhospital();
@@ -119,7 +49,7 @@ const HospitalUser = () => {
       <NavbarComponents />
       <div style={{ background:"#E1F7F5", padding: "20px" }}>
         <Container >
-        <h3 className="text-center">Hospitales </h3>
+        <h3 className="text-center">Hospitales y Sanatorios</h3>
           <Row>
             <Col>
               <Table responsive striped bordered hover className="text-center">
