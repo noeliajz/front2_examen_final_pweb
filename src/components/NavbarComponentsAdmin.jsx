@@ -42,14 +42,14 @@ const NavbarComponentsAdmin = () => {
               </>
             )}
           </Nav>
-          <Nav>
-            {(role !== "admin" & role !== "user") && (
+           <Nav>
+            {(role !== "admin" && role !== "user") && (
               <>
                 <Nav.Link href="/register">Registrarse</Nav.Link>
                 <Nav.Link eventKey={2} href="/login">Iniciar sesión</Nav.Link>
               </>
             )}
-          </Nav>
+          </Nav> 
         </Navbar.Collapse>
       </Container>
     </Navbar>

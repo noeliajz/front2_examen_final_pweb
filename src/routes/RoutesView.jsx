@@ -32,6 +32,7 @@ import NewDoctor from '../page/NewDoctor'
 import NewDoctorUser from '../page/NewDoctorUser'
 import NewHospital from '../page/NewHospital'
 import HospitalUser from '../page/HospitalUser'
+import AllDoctors from '../page/AllDoctors'
 
 
 const RoutesView = () => {
@@ -67,6 +68,7 @@ const RoutesView = () => {
       <Route path='/newDoctor' element={<NewDoctor/>}/>
       <Route path='/newDoctorUser' element={<NewDoctorUser/>}/>
       <Route path='/hospitalUser' element={<HospitalUser/>}/>
+      <Route path='/allDoctorsUser' element={<AllDoctors/>}/>
 
       <Route path='/prueba' element={<Prueba/>}/>
       <Route path='/prueba2' element={<Prueba2/>}/>

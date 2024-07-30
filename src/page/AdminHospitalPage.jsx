@@ -117,7 +117,7 @@ const AdminHospitalPage = () => {
     <>
       <NavbarComponentsAdmin />
       <div style={{ background: "#0E46A3", padding: "20px" }}>
-        <Container style={{ background: "#E1F7F5" }}>
+        <Container style={{ background: "#E1F7F5" , margin:"35px"}}>
         <h3 className="text-center">Hospitales </h3>
           <Row>
             <Col>

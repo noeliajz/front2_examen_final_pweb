@@ -172,7 +172,7 @@ const NewUser = () => {
                     onClick={handleClick}
                     variant="primary"
                     type="submit"
-                    style={{margin: "5px" ,background:"#0E46A3", color:"#E1F7F5"}}
+                    style={{margin: "25px" ,background:"#0E46A3", color:"#E1F7F5"}}
                   >
                     Guardar
                   </Button>

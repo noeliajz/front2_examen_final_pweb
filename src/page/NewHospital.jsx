@@ -90,7 +90,7 @@ const NewHospital = () => {
     <>
       <NavbarComponentsAdmin />
       <div style={{ background: "#0E46A3", padding: "20px" }}>
-        <Container style={{ background: "#E1F7F5" }}>
+        <Container style={{ background: "#E1F7F5" , margin:"35px"}}>
           <Row
             className="justify-content-center"
             style={{ paddingTop: "25px" }}
