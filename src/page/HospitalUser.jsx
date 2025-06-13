@@ -17,7 +17,7 @@ const HospitalUser = () => {
     const token = localStorage.getItem("token");
 
     try {
-      const res = await fetch("http://localhost:3000/api/hospital", {
+      const res = await fetch("http://localhost:8080/api/hospital", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

@@ -15,7 +15,7 @@ const DoctorsPage = () => {
   const idDoctor =localStorage.getItem('idDoctor')
     console.log(idAgenda)
     const token =  localStorage.getItem('token');
-    const res = await axios.get(`http://localhost:3000/api/agenda/${idAgenda}`, {
+    const res = await axios.get(`http://localhost:8080/api/agenda/${idAgenda}`, {
       headers: {
         authorization: 'Bearer ' + token
       }
