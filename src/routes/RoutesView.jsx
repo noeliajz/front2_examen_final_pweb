@@ -69,7 +69,7 @@ const RoutesView = () => {
       <Route path='/newDoctorUser' element={<NewDoctorUser/>}/>
       <Route path='/hospitalUser' element={<HospitalUser/>}/>
       <Route path='/allDoctorsUser' element={<AllDoctors/>}/>
-      <Route path='/AdminTurnos' element={<AdminTurnos/>}/>
+      <Route path="/AdminTurnos/:id" element={<AdminTurnos />} />
 
       <Route path='/prueba' element={<Prueba/>}/>
       <Route path='/prueba2' element={<Prueba2/>}/>
