@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom"; // <-- Importamos Link
 import Table from "react-bootstrap/Table";
 import Swal from "sweetalert2";
 import Col from "react-bootstrap/esm/Col";
@@ -9,7 +9,7 @@ import NavbarComponentsAdmin from "../components/NavbarComponentsAdmin";
 import clienteAxios from "./clienteAxios";
 
 const AdminTurnos = () => {
-  const { id } = useParams(); // 👈 toma el id del doctor desde la URL
+  const { id } = useParams(); 
   const [doctor, setDoctor] = useState(null);
 
   const getDoctor = async () => {
@@ -17,9 +17,8 @@ const AdminTurnos = () => {
       const res = await clienteAxios.get(`/doctor/${id}`);
       
       // Lógica robusta para manejar la respuesta del backend
-      // Tu backend devuelve { msg: 'Doctor encontrado', getDoctor: {...} }
       if (res.data.getDoctor) {
-        setDoctor(res.data.getDoctor); // <--- DEBE SER res.data.getDoctor según tu backend
+        setDoctor(res.data.getDoctor); 
       } else if (res.data) {
         setDoctor(res.data);
       } else {
@@ -55,6 +54,21 @@ const AdminTurnos = () => {
           </h3>
           <Row>
             <Col>
+              
+              {/* NUEVO BOTÓN AGREGAR */}
+              <Link
+                to={`/AdminNuevoTurnos/${id}`} // <-- Ruta dinámica
+                className="btn"
+                style={{
+                  margin: "20px 0", // Añade margen superior e inferior
+                  background: "#0E46A3",
+                  color: "#E1F7F5",
+                }}
+              >
+                Agregar Turno
+              </Link>
+              {/* FIN NUEVO BOTÓN */}
+
               <Table responsive striped bordered hover className="text-center">
                 <thead>
                   <tr>
