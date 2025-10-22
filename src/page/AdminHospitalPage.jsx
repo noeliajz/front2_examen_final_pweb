@@ -155,6 +155,11 @@ const AdminHospitalPage = () => {
                           >
                             Borrar
                           </button>
+                          <a href="https://www.google.com/maps/@-26.85868,-65.2263447,15z?entry=ttu&g_ep=EgoyMDI1MTAxNC4wIKXMDSoASAFQAw%3D%3D"
+                            className="btn btn-success m-2"
+                          >
+                            Ubicación
+                          </a>
                         </td>
                       </tr>
                     ))
