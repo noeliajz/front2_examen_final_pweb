@@ -31,7 +31,7 @@ const AdminNuevoTurnos = () => {
         throw new Error("Respuesta de la API vacía o inesperada");
       }
     } catch (error) {
-      console.error("Error al obtener el doctor:", error);
+      console.error("Error al obtener  doctor:", error);
       Swal.fire("Error", "No se pudo cargar el doctor.", "error");
     }
   };
