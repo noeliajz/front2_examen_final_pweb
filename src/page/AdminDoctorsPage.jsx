@@ -8,15 +8,15 @@ import NavbarComponentsAdmin from "../components/NavbarComponentsAdmin";
 import { Link } from "react-router-dom";
 import clienteAxios from "./clienteAxios";
 
-const AdminallDoctoresPage = () => {
+const AdminDoctorsPage = () => {
   const [allDoctores, setAllDoctores] = useState([]);
   const [refreshAllDoctores, setRefreshAllDoctores] = useState(false);
 
   const getAllDoctores = async () => {
-    const res = await clienteAxios.get("/doctor")
-    const { allDoctores } = res.data
-    setAllDoctores(allDoctores)
-  }
+    const res = await clienteAxios.get("/doctor");
+    const { allDoctores } = res.data;
+    setAllDoctores(allDoctores);
+  };
 
   const deleteDoctor = async (id) => {
     const token = localStorage.getItem("token");
@@ -50,13 +50,13 @@ const AdminallDoctoresPage = () => {
             });
 
             if (res.ok) {
-              Swal.fire({      
+              Swal.fire({
                 position: "top-center",
                 icon: "success",
                 title: "¡Borrado!",
                 text: "El doctor ha sido borrado.",
                 showConfirmButton: false,
-                timer: 1370
+                timer: 1370,
               });
               setRefreshAllDoctores(true); // Trigger refresh of allDoctores
             } else {
@@ -64,24 +64,24 @@ const AdminallDoctoresPage = () => {
               throw new Error(errorText);
             }
           } catch (error) {
-            Swal.fire({      
+            Swal.fire({
               position: "top-center",
               icon: "error",
               title: "Error",
               text: "Ocurrió un error al intentar borrar el doctor.",
               showConfirmButton: false,
-              timer: 1350
+              timer: 1350,
             });
             console.error("Error deleting doctor:", error);
           }
         } else if (result.dismiss === Swal.DismissReason.cancel) {
-          Swal.fire({      
+          Swal.fire({
             position: "top-center",
             icon: "error",
             title: "Cancelado",
             text: "El doctor está a salvo.",
             showConfirmButton: false,
-            timer: 1370
+            timer: 1370,
           });
         }
       });
@@ -97,13 +97,17 @@ const AdminallDoctoresPage = () => {
       <NavbarComponentsAdmin />
       <div style={{ background: "#0E46A3", padding: "20px" }}>
         <Container style={{ background: "#E1F7F5" }}>
-        <h3 className="text-center pt-3">Doctores</h3>
+          <h3 className="text-center pt-3">Doctores</h3>
           <Row>
             <Col>
               <Link
                 to="/newDoctor"
-                className="btn " style={{margin: "20px", background:"#0E46A3", color:"#E1F7F5"}}
-                
+                className="btn "
+                style={{
+                  margin: "20px",
+                  background: "#0E46A3",
+                  color: "#E1F7F5",
+                }}
               >
                 Agregar
               </Link>
@@ -130,7 +134,7 @@ const AdminallDoctoresPage = () => {
                         <td>{doctor.consultorio}</td>
                         <td>
                           <Link
-                            to={`/AdminTurnos`}
+                            to={`/AdminTurnos/${doctor._id}`}
                             className="btn btn-warning"
                           >
                             Turnos
@@ -168,4 +172,4 @@ const AdminallDoctoresPage = () => {
   );
 };
 
-export default AdminallDoctoresPage;
+export default AdminDoctorsPage;
