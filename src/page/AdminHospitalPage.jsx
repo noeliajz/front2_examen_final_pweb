@@ -9,36 +9,34 @@ import { Link } from "react-router-dom";
 import clienteAxios from "./clienteAxios";
 
 const AdminHospitalPage = () => {
-  const [allhospital, setallhospital] = useState([]);
-  const [refreshallhospital, setRefreshallhospital] = useState(false);
+  const [allhospital, setAllHospital] = useState([]);
+  const [refreshAllHospital, setRefreshAllHospital] = useState(false);
 
-  const getAllhospital = async () => {
-    const token = localStorage.getItem("token");
+  // =====================
+  // GET: obtener todos los hospitales
+  // =====================
+  const getAllHospital = async () => {
+  const token = localStorage.getItem("token"); // 🔐 tomar token guardado
+  try {
+    const res = await clienteAxios.get("/hospital", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-    try {
-      const res = await fetch("http://localhost:8080/api/hospital", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+    const { allhospital } = res.data;
+    console.log("✅ Hospitales recibidos:", allhospital);
+    setAllHospital(allhospital);
+  } catch (error) {
+    console.error("❌ Error al obtener hospitales:", error);
+  }
+};
 
-      if (!res.ok) {
-        const errorText = await res.text();
-        throw new Error(errorText);
-      }
 
-      const { allhospital } = await res.json();
-      setallhospital(allhospital);
-    } catch (error) {
-      console.error("Error fetching hospital:", error);
-    }
-  };
-
-  const deletehospital = async (id) => {
-    const token = localStorage.getItem("token");
-
+  // =====================
+  // DELETE: eliminar hospital
+  // =====================
+  const deleteHospital = async (id) => {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: "btn btn-success",
@@ -54,46 +52,32 @@ const AdminHospitalPage = () => {
         icon: "warning",
         showCancelButton: true,
         confirmButtonText: "Eliminar",
-        cancelButtonText: "Cancelar!",
+        cancelButtonText: "Cancelar",
         reverseButtons: true,
       })
       .then(async (result) => {
         if (result.isConfirmed) {
           try {
-            const res = await fetch(
-              `http://localhost:8080/api/hospital/${id}`,
-              {
-                method: "DELETE",
-                headers: {
-                  "Content-Type": "application/json",
-                  authorization: `Bearer ${token}`,
-                },
-              }
-            );
-            if (res.ok) {
-              Swal.fire({
-                position: "top",
-                title: "¡Borrado!",
-                text: "El hospital ha sido borrado.",
-                icon: "success",
-                showConfirmButton: false,
-                timer: 1370,
-              });
-              setRefreshallhospital(true); // Trigger refresh of allDoctores
-            } else {
-              const errorText = await res.text();
-              throw new Error(errorText);
-            }
+            await clienteAxios.delete(`/hospital/${id}`);
+            Swal.fire({
+              position: "top",
+              title: "¡Borrado!",
+              text: "El hospital ha sido eliminado.",
+              icon: "success",
+              showConfirmButton: false,
+              timer: 1300,
+            });
+            setRefreshAllHospital(true); // 🔄 refresca lista
           } catch (error) {
             Swal.fire({
               position: "top",
               title: "Error",
-              text: "Ocurrió un error al intentar borrar el hospital.",
+              text: "Ocurrió un error al eliminar el hospital.",
               icon: "error",
               showConfirmButton: false,
-              timer: 1370,
+              timer: 1300,
             });
-            console.error("Error deleting hospital:", error);
+            console.error("Error al borrar hospital:", error);
           }
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           Swal.fire({
@@ -102,29 +86,39 @@ const AdminHospitalPage = () => {
             text: "El hospital está a salvo",
             icon: "error",
             showConfirmButton: false,
-            timer: 1370,
+            timer: 1300,
           });
         }
       });
   };
 
+  // =====================
+  // useEffect: cargar hospitales al montar
+  // =====================
   useEffect(() => {
-    getAllhospital();
-    setRefreshallhospital(false);
-  }, [refreshallhospital]);
+    getAllHospital();
+    setRefreshAllHospital(false);
+  }, [refreshAllHospital]);
 
+  // =====================
+  // Render
+  // =====================
   return (
     <>
       <NavbarComponentsAdmin />
       <div style={{ background: "#0E46A3", padding: "20px" }}>
-        <Container style={{ background: "#E1F7F5" , margin:"35px"}}>
-        <h3 className="text-center">Hospitales </h3>
+        <Container style={{ background: "#E1F7F5", margin: "35px" }}>
+          <h3 className="text-center">Hospitales</h3>
           <Row>
             <Col>
               <Link
                 to="/newHospital"
-                className="btn "
-                style={{margin: "20px", background:"#0E46A3", color:"#E1F7F5"}}
+                className="btn"
+                style={{
+                  margin: "20px",
+                  background: "#0E46A3",
+                  color: "#E1F7F5",
+                }}
               >
                 Agregar
               </Link>
@@ -153,12 +147,11 @@ const AdminHospitalPage = () => {
                             to={`/editHospital/${hospital._id}`}
                             className="btn btn-warning"
                           >
-                            {" "}
                             Editar
                           </Link>
                           <button
                             className="btn btn-danger mx-2"
-                            onClick={() => deletehospital(hospital._id)}
+                            onClick={() => deleteHospital(hospital._id)}
                           >
                             Borrar
                           </button>
