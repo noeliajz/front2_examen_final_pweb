@@ -115,6 +115,7 @@ const AdminallDoctoresPage = () => {
                     <th>NOTAS</th>
                     <th>ESPECIALIDAD MÉDICA</th>
                     <th>CONSULTORIO</th>
+                    <th>TURNOS</th>
                     <th>ACCIONES</th>
                   </tr>
                 </thead>
@@ -127,6 +128,14 @@ const AdminallDoctoresPage = () => {
                         <td>{doctor.notas}</td>
                         <td>{doctor.especialidad}</td>
                         <td>{doctor.consultorio}</td>
+                        <td>
+                          <Link
+                            to={`/AdminTurnos`}
+                            className="btn btn-warning"
+                          >
+                            Turnos
+                          </Link>
+                        </td>
                         <td>
                           <Link
                             to={`/editDoctor/${doctor._id}`}
