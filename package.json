@@ -22,6 +22,7 @@
     "dayjs": "^1.11.11",
     "image-type": "^5.2.0",
     "lodash": "^4.17.21",
+    "nodemailer": "^7.0.10",
     "react": "^18.3.1",
     "react-big-calendar": "^1.13.0",
     "react-bootstrap": "^2.10.3",
