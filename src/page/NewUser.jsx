@@ -15,6 +15,7 @@ const NewUser = () => {
     role: "",
     pass: "",
     repeatPass: "",
+    telefono: ""
   });
 
   const handleChange = (ev) => {
@@ -31,7 +32,8 @@ const NewUser = () => {
       formValues.obraSocial === "" ||
       formValues.role === "" ||
       formValues.pass === "" ||
-      formValues.repeatPass === ""
+      formValues.repeatPass === ""||
+      formValues.telefono === ""
     ) {
       Swal.fire({
         position: "top-center",
@@ -65,6 +67,7 @@ const NewUser = () => {
           role: formValues.role,
           pass: formValues.pass,
           repeatPass: formValues.repeatPass,
+          telefono: formValues.telefono
         }),
       });
 
@@ -83,6 +86,7 @@ const NewUser = () => {
         role: "",
         pass: "",
         repeatPass: "",
+        telefono: ""
       });
     } catch (error) {
       console.error("Error al agregar usuario:", error);
@@ -164,6 +168,17 @@ const NewUser = () => {
                     className="form-control"
                     type="password"
                     value={formValues.repeatPass}
+                    placeholder=""
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>Ingresar telefono</Form.Label>
+                  <Form.Control
+                    name="telefono"
+                    onChange={handleChange}
+                    className="form-control"
+                    type="telefono"
+                    value={formValues.telefono}
                     placeholder=""
                   />
                 </Form.Group>

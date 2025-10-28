@@ -10,34 +10,47 @@ import NavbarComponentsAdmin from "../components/NavbarComponentsAdmin";
 import clienteAxios from "./clienteAxios";
 
 const AdminNuevoTurnos = () => {
-  const { id } = useParams(); 
+  const { id } = useParams(); // ID del doctor
   const navigate = useNavigate(); 
+  
+  // Estados necesarios
   const [doctor, setDoctor] = useState(null);
+  const [users, setUsers] = useState([]); // Lista de pacientes/usuarios
   const [newTurnoDate, setNewTurnoDate] = useState("");
+  const [selectedUserId, setSelectedUserId] = useState(""); // ID del usuario seleccionado
   const [loading, setLoading] = useState(false);
 
   // --------------------------------
-  // 1. OBTENER DOCTOR (Para mostrar el nombre)
+  // 1. OBTENER DOCTOR Y USUARIOS (CORREGIDO)
   // --------------------------------
-  const getDoctor = async () => {
+  const fetchData = async () => {
     try {
-      const res = await clienteAxios.get(`/doctor/${id}`);
+      // Cargar Doctor
+      const doctorRes = await clienteAxios.get(`/doctor/${id}`);
+      setDoctor(doctorRes.data.getDoctor || doctorRes.data);
+
+      // Cargar Usuarios (Pacientes)
+      const usersRes = await clienteAxios.get("/users"); 
       
-      if (res.data.getDoctor) {
-        setDoctor(res.data.getDoctor);
-      } else if (res.data) {
-        setDoctor(res.data);
+      // CORRECCIÓN CLAVE: La API está devolviendo un array de usuarios directamente (usersRes.data),
+      // NO anidado en 'allUsers'. Usamos usersRes.data si es un array, o usersRes.data.allUsers como respaldo.
+      const loadedUsers = usersRes.data.allUsers || usersRes.data;
+
+      if (Array.isArray(loadedUsers)) {
+        setUsers(loadedUsers); // Ahora los usuarios deberían cargarse
       } else {
-        throw new Error("Respuesta de la API vacía o inesperada");
+        console.warn("La respuesta de /users no es un array válido. Se asume lista vacía.");
+        setUsers([]); 
       }
+
     } catch (error) {
-      console.error("Error al obtener  doctor:", error);
-      Swal.fire("Error", "No se pudo cargar el doctor.", "error");
+      console.error("Error al cargar datos:", error);
+      Swal.fire("Error", "No se pudo cargar el doctor o la lista de pacientes. Revisa la consola para más detalles.", "error");
     }
   };
 
   useEffect(() => {
-    getDoctor();
+    fetchData();
   }, [id]);
 
   // --------------------------------
@@ -45,43 +58,39 @@ const AdminNuevoTurnos = () => {
   // --------------------------------
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!newTurnoDate) {
-      return Swal.fire("Advertencia", "Debe seleccionar una fecha y hora para el turno.", "warning");
+
+    // VALIDACIÓN: selectedUserId ahora debe contener un ID válido (no "")
+    if (!newTurnoDate || !selectedUserId) {
+      return Swal.fire("Advertencia", "Debe seleccionar una **fecha** y un **paciente** para el turno.", "warning");
     }
 
     setLoading(true);
     const token = localStorage.getItem("token");
     
-    // El backend espera el turno en el cuerpo como { turno: "fecha-hora-iso" }
-    const data = {
+    // PAYLOAD: Enviamos los dos campos requeridos por el backend: turno (fecha ISO) y usuarioId.
+    const payload = {
       turno: new Date(newTurnoDate).toISOString(),
+      usuarioId: selectedUserId, 
     };
 
     try {
-        // RUTA AJUSTADA: Cambiamos a '/doctor/turnos/:id' o la ruta que uses en tu router.
-        // **Verifica en tu archivo de rutas (router) del backend la URL exacta para agregar un turno.**
-        const rutaAPI = `/doctor/${id}/turnos`; // <-- RUTA CORREGIDA (Probabilidad 1)
-        
-        // Si tu ruta es solo POST a /doctor/:id, usa:
-        // const rutaAPI = `/doctor/${id}`; // <-- RUTA CORREGIDA (Probabilidad 2)
-
-        // Si tu ruta es POST a /doctor/agregar-turno/:id, usa:
-        // const rutaAPI = `/doctor/agregar-turno/${id}`; // <-- RUTA CORREGIDA (Probabilidad 3)
-
-
-        const res = await clienteAxios.post(rutaAPI, data, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+      // Ruta de la API
+      const rutaAPI = `/doctor/${id}/turnos`; 
+      
+      await clienteAxios.post(rutaAPI, payload, { 
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       
       Swal.fire("Éxito", "Turno agregado correctamente.", "success");
+      // Redirigir a la lista de turnos del doctor
       navigate(`/AdminTurnos/${id}`); 
     } catch (error) {
-      console.error("Error al agregar turno:", error);
+      console.error("Error al agregar turno:", error.response?.data);
       
-      // Añadimos detalles del error para depurar
-      const errorMsg = error.response?.data?.msg || "Verifique si el servidor está corriendo o si la ruta de la API es correcta.";
+      // Muestra el mensaje de error del backend (el 400 Bad Request)
+      const errorMsg = error.response?.data?.msg || "Error de red o ruta de API incorrecta.";
       Swal.fire("Error", `No se pudo agregar el turno. Detalle: ${errorMsg}`, "error");
     } finally {
       setLoading(false);
@@ -100,24 +109,55 @@ const AdminNuevoTurnos = () => {
   return (
     <>
       <NavbarComponentsAdmin />
-      <div style={{ background: "#0E46A3", padding: "20px" }}>
+      <div style={{ background: "#0E46A3", padding: "20px", minHeight: "90vh" }}>
         <Container style={{ background: "#E1F7F5", padding: "20px", borderRadius: "8px" }}>
           <h3 className="text-center pt-3">
             Agregar Nuevo Turno al Dr/a {doctor.nombre} {doctor.apellido}
           </h3>
           <hr/>
           <Row className="justify-content-center">
-            <Col md={6}>
+            <Col md={8}>
               <Form onSubmit={handleSubmit} className="p-4">
-                <Form.Group className="mb-3" controlId="formNewTurno">
-                  <Form.Label>Seleccionar Fecha y Hora del Turno</Form.Label>
-                  <Form.Control
-                    type="datetime-local"
-                    value={newTurnoDate}
-                    onChange={(e) => setNewTurnoDate(e.target.value)}
-                    required
-                  />
-                </Form.Group>
+                
+                <Row className="mb-4">
+                    <Col md={6}>
+                        {/* Campo de Fecha y Hora */}
+                        <Form.Group controlId="formNewTurno">
+                            <Form.Label>Seleccionar Fecha y Hora del Turno</Form.Label>
+                            <Form.Control
+                                type="datetime-local"
+                                value={newTurnoDate}
+                                onChange={(e) => setNewTurnoDate(e.target.value)}
+                                required
+                            />
+                        </Form.Group>
+                    </Col>
+                    
+                    <Col md={6}>
+                        {/* Selector de Paciente */}
+                        <Form.Group controlId="formPaciente">
+                            <Form.Label>Seleccionar Paciente</Form.Label>
+                            <Form.Select 
+                                value={selectedUserId}
+                                onChange={(e) => setSelectedUserId(e.target.value)}
+                                required
+                            >
+                                <option value="">-- Seleccione un paciente --</option>
+                                {users.map((user) => (
+                                    <option key={user._id} value={user._id}>
+                                        {user.usuario} {/* Muestra el campo 'usuario' (username/email) ya que 'nombre'/'apellido' no existen en tu modelo */}
+                                    </option>
+                                ))}
+                            </Form.Select>
+                            {users.length === 0 && (
+                                <Form.Text className="text-danger">
+                                    No se encontraron pacientes para asignar.
+                                </Form.Text>
+                            )}
+                        </Form.Group>
+                    </Col>
+                </Row>
+
 
                 <Button 
                   variant="primary" 
