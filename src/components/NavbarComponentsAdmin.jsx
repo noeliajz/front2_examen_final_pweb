@@ -38,7 +38,8 @@ const NavbarComponentsAdmin = () => {
                 <Nav.Link href="/adminUserPage">Usuarios</Nav.Link>
                 <Nav.Link href="/adminDoctorsPage">Doctores</Nav.Link>
                 <Nav.Link href="/adminHospitalPage">Hospitales</Nav.Link>
-                <Nav.Link href="/Reportes">Reportes</Nav.Link>
+                <Nav.Link href="/Reportes">Reportes Doctor</Nav.Link>
+                <Nav.Link href="/ReportesAsistencia">Reportes Asistencia</Nav.Link>         
                 <Nav.Link href="/" onClick={() => logoutUserFunction()}>Cerrar sesión</Nav.Link>
               </>
             )}
