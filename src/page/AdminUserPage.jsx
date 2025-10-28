@@ -131,6 +131,7 @@ const AdminUserPage = () => {
                     <th>USUARIO</th>
                     <th>ROL</th>
                     <th>OBRA SOCIAL</th>
+                    <th>TELÉFONO</th>
                     <th>ACCIONES</th>
                   </tr>
                 </thead>
@@ -140,6 +141,7 @@ const AdminUserPage = () => {
                       <td>{user.usuario}</td>
                       <td>{user.role}</td>
                       <td>{user.obraSocial}</td>
+                      <td>{user.telefono}</td>
                       <td>
                         <Link
                           to={`/editUser/${user._id}`}
