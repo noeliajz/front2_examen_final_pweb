@@ -3,75 +3,63 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 import { Bar, Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
 import NavbarComponentsAdmin from '../components/NavbarComponentsAdmin';
-// 🛑 IMPORTANTE: Asegúrate que esta ruta sea correcta para tu axios
-import axiosClient from '../utils/axiosClient'; 
+
+// Importa clienteAxios o el método de fetching que uses
+// import clienteAxios from './clienteAxios'; 
 
 // 1. Registrar elementos necesarios para Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
 
-const Reportes = () => {
+// Datos de ejemplo simulados (reemplazar con llamadas a tu API)
+const mockData = {
+    asistencia: 75, // 75% de asistencia general
+    medicos: [
+        { nombre: 'Dr. Carrizo', turnosAsignados: 120, turnosAsistidos: 90 },
+        { nombre: 'Dra. Pérez', turnosAsignados: 90, turnosAsistidos: 85 },
+        { nombre: 'Dr. Gómez', turnosAsignados: 150, turnosAsistidos: 100 },
+        { nombre: 'Dra. López', turnosAsignados: 75, turnosAsistidos: 60 },
+    ]
+};
 
-    // 2. Estado inicial con valores en cero, esperando la data de la API
-    const [reportData, setReportData] = useState({
-        medicos: [],
-        totalAsignados: 0,
-        totalAsistidos: 0,
-    });
+
+const ReportesAsistencia = () => {
+
+    // 2. Estado para almacenar los datos reales de la API
+    const [reportData, setReportData] = useState(mockData);
     const [loading, setLoading] = useState(true);
 
-    // 3. Función para cargar datos REALES desde el backend
-   // Reportes.jsx - Modificación en la función fetchReportes
-
-const fetchReportes = async () => {
-    try {
-        const res = await axiosClient.get('/reportes/dashboard');
-        const fetchedMedicos = res.data.medicos || [];
-
-        if (fetchedMedicos.length === 0 && res.data.msg) {
-            console.warn("Advertencia: La API respondió correctamente, pero la lista de médicos está vacía.");
+    // 3. Función para cargar datos (ejemplo de la estructura de llamada)
+    const fetchReportes = async () => {
+        // Aquí harías la llamada a tu backend para obtener los datos.
+        /*
+        try {
+            const res = await clienteAxios.get('/reportes/dashboard');
+            setReportData(res.data);
+        } catch (error) {
+            console.error("Error al cargar reportes:", error);
+            // Manejo de error
+        } finally {
+            setLoading(false);
         }
-
-        // ✅ GUARDAMOS LOS DATOS DEL BACKEND EN EL ESTADO
-        setReportData({
-            medicos: fetchedMedicos,
-            totalAsignados: res.data.totalAsignados || 0,
-            totalAsistidos: res.data.totalAsistidos || 0,
-        });
-
-    } catch (error) {
-        console.error("Error al cargar reportes. Posiblemente problema de autenticación o ruta:", error.response || error);
-    } finally {
-        setLoading(false);
-    }
-};
+        */
+        setLoading(false); // Mantener para el ejemplo con mockData
+    };
 
     useEffect(() => {
         fetchReportes();
     }, []);
 
-    // 4. CÁLCULO DE DATOS PARA LOS GRÁFICOS
-    const { totalAsignados, totalAsistidos } = reportData;
-    
-    // Cálculo de Turnos Ausentes
-    const totalAusentes = totalAsignados - totalAsistidos;
-    
-    // Cálculo del porcentaje general para mostrar en la tarjeta
-    const porcentajeAsistencia = totalAsignados > 0 
-        ? ((totalAsistidos / totalAsignados) * 100).toFixed(2) 
-        : 0;
-    
-    // 5. Transformar datos para el gráfico de Asistencia General (Doughnut)
+    // 4. Transformar datos para el gráfico de Asistencia General
     const asistenciaData = {
-        labels: ['Turnos Asistidos', 'Turnos Ausentes'],
+        labels: ['Asistencia', 'Ausencias'],
         datasets: [{
-            // Usa el CONTEO de turnos obtenidos de la API
-            data: [totalAsistidos, totalAusentes], 
+            data: [reportData.asistencia, 100 - reportData.asistencia],
             backgroundColor: ['#0E46A3', '#E1F7F5'],
             hoverBackgroundColor: ['#0A337A', '#C6E4E2']
         }]
     };
 
-    // 6. Transformar datos para el gráfico de Carga de Turnos por Médico (Bar)
+    // 5. Transformar datos para el gráfico de Carga de Turnos por Médico
     const turnosMedicosData = {
         labels: reportData.medicos.map(m => m.nombre),
         datasets: [{
@@ -79,14 +67,15 @@ const fetchReportes = async () => {
             data: reportData.medicos.map(m => m.turnosAsignados),
             backgroundColor: '#0E46A3',
         }, {
-            label: 'Turnos Asistidos',
-            data: reportData.medicos.map(m => m.turnosAsistidos),
-            backgroundColor: '#1E7B7A', 
+             label: 'Turnos Asistidos',
+             data: reportData.medicos.map(m => m.turnosAsistidos),
+             backgroundColor: '#1E7B7A', 
         }]
     };
 
     if (loading) {
         return (
+            // ✅ CORRECCIÓN: Usar Fragmento (<>...</>) para envolver Navbar y Container.
             <> 
                 <NavbarComponentsAdmin/>
                 <Container className="mt-5">
@@ -96,27 +85,26 @@ const fetchReportes = async () => {
         );
     }
 
-    // 7. Renderizar los reportes
+    // 6. Renderizar los reportes
     return (
+        // ✅ CORRECCIÓN: Usar Fragmento (<>...</>) para envolver Navbar y Container.
         <>
             <NavbarComponentsAdmin/>
             <Container style={{ minHeight: "90vh", paddingTop: "20px" }}>
                 <h2 className="text-center mb-4" style={{ color: '#0E46A3' }}>Panel de Reportes</h2>
                 <Row>
-                    {/* REPORTE 1: Porcentaje de Asistencia General (CIRCULAR) */}
+                    {/* REPORTE 1: Porcentaje de Asistencia General */}
                     <Col md={4} className="mb-4">
                         <Card className="text-center p-3 h-100">
-                            <Card.Title>Distribución de Asistencia</Card.Title>
+                            <Card.Title>Porcentaje de Asistencia General</Card.Title>
                             <div style={{ height: '250px', margin: 'auto' }}>
                                 <Doughnut data={asistenciaData} options={{ maintainAspectRatio: false }} />
                             </div>
-                            {/* Muestra el porcentaje calculado */}
-                            <h4 className="mt-3">{porcentajeAsistencia}% de Asistencia General</h4>
-                            <p className="text-muted">Total de Turnos: {totalAsignados}</p>
+                            <h4 className="mt-3">{reportData.asistencia}% de Asistencia</h4>
                         </Card>
                     </Col>
 
-                    {/* REPORTE 2: Médicos con Más Turnos (BARRA) */}
+                    {/* REPORTE 2: Médicos con Más Turnos */}
                     <Col md={8} className="mb-4">
                         <Card className="p-3 h-100">
                             <Card.Title className="text-center">Carga de Turnos por Médico</Card.Title>
@@ -138,4 +126,4 @@ const fetchReportes = async () => {
     );
 };
 
-export default Reportes;
+export default ReportesAsistencia;
