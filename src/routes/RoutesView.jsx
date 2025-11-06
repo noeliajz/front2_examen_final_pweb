@@ -36,7 +36,7 @@ import AllDoctors from '../page/AllDoctors'
 import AdminTurnos from '../page/AdminTurnos'
 import AdminNuevoTurnos from '../page/AdminNuevoTurnos'
 import Reportes from '../page/Reportes'
-import ReportesAsistencia from '../page/ReportesAsistencia'
+import ReportesInformes from '../page/ReportesInformes'
 
 const RoutesView = () => {
   return (
@@ -75,7 +75,7 @@ const RoutesView = () => {
       <Route path="/AdminTurnos/:id" element={<AdminTurnos />} />
       <Route path="/AdminNuevoTurnos/:id" element={<AdminNuevoTurnos />} />
       <Route path="/Reportes" element={<Reportes/>} />
-      <Route path="/ReportesAsistencia" element={<ReportesAsistencia/>} />
+      <Route path="/ReportesInformes" element={<ReportesInformes/>} />
 
       <Route path='/prueba' element={<Prueba/>}/>
       <Route path='/prueba2' element={<Prueba2/>}/>
