@@ -9,7 +9,7 @@ import axiosClient from '../utils/axiosClient';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
 
-const Reportes = () => {
+const ReportesInformes = () => {
   const [reportData, setReportData] = useState({
     medicos: [],
     totalAsignados: 0,
@@ -147,4 +147,4 @@ const Reportes = () => {
   );
 };
 
-export default Reportes;
+export default ReportesInformes;

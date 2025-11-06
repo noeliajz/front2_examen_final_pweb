@@ -22,6 +22,8 @@
     "cors": "^2.8.5",
     "dayjs": "^1.11.11",
     "image-type": "^5.2.0",
+    "jspdf": "^3.0.3",
+    "jspdf-autotable": "^5.0.2",
     "lodash": "^4.17.21",
     "nodemailer": "^7.0.10",
     "react": "^18.3.1",
