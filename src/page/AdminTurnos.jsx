@@ -6,10 +6,10 @@ import Col from "react-bootstrap/esm/Col";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Button from "react-bootstrap/Button";
-import NavbarComponentsAdmin from "../components/NavbarComponentsAdmin";
 import clienteAxios from "./clienteAxios";
 // Se importa el componente de formulario (Form) para usar el Checkbox
 import Form from "react-bootstrap/Form";
+import NavbarComponentsAdmin from "../components/NavbarComponentsAdmin";
 
 const AdminTurnos = () => {
   const { id } = useParams();
@@ -195,54 +195,54 @@ const AdminTurnos = () => {
     );
   }
 
-// AdminTurnos.jsx (dentro de la función handleSendWhatsAppBackend)
+  // AdminTurnos.jsx (dentro de la función handleSendWhatsAppBackend)
 
-  const handleSendWhatsAppBackend = async (telefonoUsuario, fechaTurno) => {
-    if (!telefonoUsuario) {
-      Swal.fire("Error", "El usuario no tiene número registrado.", "warning");
-      return;
-    }
+  const handleSendWhatsAppBackend = async (telefonoUsuario, fechaTurno) => {
+    if (!telefonoUsuario) {
+      Swal.fire("Error", "El usuario no tiene número registrado.", "warning");
+      return;
+    }
 
-    const fechaTurnoObj = new Date(fechaTurno);
-    const fechaFormateada = fechaTurnoObj.toLocaleString("es-AR", {
-      dateStyle: "short",
-      timeStyle: "short",
-    }); // <-- Formateamos la fecha (como corregimos antes)
+    const fechaTurnoObj = new Date(fechaTurno);
+    const fechaFormateada = fechaTurnoObj.toLocaleDateString("es-AR");
 
-    Swal.fire({
-      title: "Enviando mensaje...",
-      allowOutsideClick: false,
-      showConfirmButton: false,
-      didOpen: () => Swal.showLoading(),
-    });
+    Swal.fire({
+      title: "Enviando mensaje...",
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      didOpen: () => Swal.showLoading(),
+    });
 
-    try { // <-- Línea 208 (Comienzo del try)
-      const res = await clienteAxios.post("/whatsapp/send", {
-        telefono: telefonoUsuario,
-        fecha: fechaFormateada, // <-- Usamos la fecha formateada
-        doctor: `${doctor.nombre} ${doctor.apellido}`,
-      });
+    try {
+      const res = await clienteAxios.post("/whatsapp/send", {
+        telefono: telefonoUsuario,
+        fecha: fechaFormateada,
+        doctor: `${doctor.nombre} ${doctor.apellido}`,
+      });
 
-      Swal.close();
+      Swal.close();
 
-      if (res.data.ok) {
-        Swal.fire(
-          "✅ Mensaje enviado",
-          "Se envió el mensaje por WhatsApp Web.",
-          "success"
-        );
-      } else {
-        throw new Error(res.data.msg);
-      }
-    } catch (error) { // <-- ¡Asegúrate de que este catch esté presente!
-      Swal.close();
-      Swal.fire(
-        "Error",
-        error.message || "No se pudo enviar el mensaje.",
-        "error"
-      );
-    }
-  };
+      if (res.data.ok) {
+        Swal.fire(
+          "✅ Mensaje enviado",
+          "El recordatorio fue enviado por WhatsApp Web.",
+          "success"
+        );
+      } else {
+        throw new Error(
+          res.data.msg || "Error desconocido al enviar el mensaje."
+        );
+      }
+    } catch (error) {
+      Swal.close();
+      console.error("Error al enviar mensaje WhatsApp:", error);
+      Swal.fire(
+        "Error",
+        error.message || "No se pudo enviar el mensaje.",
+        "error"
+      );
+    }
+  };
 
   return (
     <>
@@ -324,16 +324,16 @@ const AdminTurnos = () => {
                                   )}
                                 </td>
                                 <td>
-                                  <Button
-                                    variant="primary"
-                                    size="sm"
-                                    onClick={() =>
-                                      handleSendWhatsAppBackend(
-                                        turno.telefonoUsuario,
+                                  <Link
+                                    to="/WhatsappTestPage"
+                                    state={{
+                                      telefono: turno.telefonoUsuario,
+                                      fecha: new Date(
                                         turno.fecha
-                                      )
-                                    }
-                                    disabled={!turno.telefonoUsuario}
+                                      ).toLocaleDateString("es-AR"),
+                                      doctor: `${doctor.nombre} ${doctor.apellido}`,
+                                    }}
+                                    className="btn btn-primary btn-sm"
                                     style={{
                                       background: "#075E54",
                                       borderColor: "#075E54",
@@ -342,7 +342,7 @@ const AdminTurnos = () => {
                                     }}
                                   >
                                     Enviar WhatsApp (Servidor) 📲
-                                  </Button>
+                                  </Link>
                                 </td>
 
                                 <td>
