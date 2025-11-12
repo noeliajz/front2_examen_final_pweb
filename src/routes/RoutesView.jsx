@@ -38,6 +38,7 @@ import AdminNuevoTurnos from '../page/AdminNuevoTurnos'
 import Reportes from '../page/Reportes'
 import ReportesInformes from '../page/ReportesInformes'
 import WhatsAppTestPage from '../page/WhatsAppTestPage'
+import ReportesObraSocial from '../page/ReportesObraSocial'
 
 const RoutesView = () => {
   return (
@@ -78,6 +79,7 @@ const RoutesView = () => {
       <Route path="/Reportes" element={<Reportes/>} />
       <Route path="/ReportesInformes" element={<ReportesInformes/>} />
       <Route path="/WhatsappTestPage" element={<WhatsAppTestPage/>} />
+      <Route path="/ReportesObraSocial" element={<ReportesObraSocial/>} />
 
       <Route path='/prueba' element={<Prueba/>}/>
       <Route path='/prueba2' element={<Prueba2/>}/>
