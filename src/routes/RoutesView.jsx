@@ -36,9 +36,9 @@ import AllDoctors from '../page/AllDoctors'
 import AdminTurnos from '../page/AdminTurnos'
 import AdminNuevoTurnos from '../page/AdminNuevoTurnos'
 import Reportes from '../page/Reportes'
-import ReportesInformes from '../page/ReportesInformes'
 import WhatsAppTestPage from '../page/WhatsAppTestPage'
 import ReportesObraSocial from '../page/ReportesObraSocial'
+import VerObrasSociales from '../page/VerObrasSociales'
 
 const RoutesView = () => {
   return (
@@ -77,9 +77,9 @@ const RoutesView = () => {
       <Route path="/AdminTurnos/:id" element={<AdminTurnos />} />
       <Route path="/AdminNuevoTurnos/:id" element={<AdminNuevoTurnos />} />
       <Route path="/Reportes" element={<Reportes/>} />
-      <Route path="/ReportesInformes" element={<ReportesInformes/>} />
       <Route path="/WhatsappTestPage" element={<WhatsAppTestPage/>} />
       <Route path="/ReportesObraSocial" element={<ReportesObraSocial/>} />
+      <Route path="/VerObrasSociales" element={<VerObrasSociales/>} />
 
       <Route path='/prueba' element={<Prueba/>}/>
       <Route path='/prueba2' element={<Prueba2/>}/>
