@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import NavbarComponentsAdmin from "../components/NavbarComponentsAdmin";
 
 const ReportesObraSocial = () => {
   const [busqueda, setBusqueda] = useState("");
   const [doctores, setDoctores] = useState([]);
   const [mensaje, setMensaje] = useState("");
+  const navigate = useNavigate();
 
   const handleBuscar = async () => {
     if (!busqueda.trim()) {
@@ -60,6 +62,7 @@ const ReportesObraSocial = () => {
                 <th>Apellido</th>
                 <th>Especialidad</th>
                 <th>Consultorio</th>
+                <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -69,6 +72,24 @@ const ReportesObraSocial = () => {
                   <td>{doc.apellido}</td>
                   <td>{doc.especialidad}</td>
                   <td>{doc.consultorio}</td>
+                  <td>
+                    <button
+                      style={{
+                        margin: "5px",
+                        background: "#1679AB",
+                        color: "#E1F7F5",
+                        border: "none",
+                        padding: "8px 15px",
+                        borderRadius: "5px",
+                        cursor: "pointer",
+                      }}
+                      onClick={() =>
+                        navigate("/VerObrasSociales", { state: { doctor: doc } })
+                      }
+                    >
+                      Ver Obras Sociales
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
