@@ -113,6 +113,76 @@ const VerObrasSociales = () => {
     barData: barDataDoctor,
   } = generarChartData(dataObrasDoctor, "Pacientes del Doctor");
 
+  // 📄 === Generar PDF ===
+  const generarPDF = () => {
+    const doc = new jsPDF();
+
+    // --- Portada general ---
+    doc.setFontSize(18);
+    doc.setTextColor("#0E46A3");
+    doc.text("Informe de Obras Sociales de Pacientes (general)", 14, 20);
+
+    autoTable(doc, {
+      startY: 30,
+      head: [["Obra Social", "Cantidad de Pacientes"]],
+      body: dataObras.map((o) => [o.obraSocial, o.cantidad]),
+      headStyles: { fillColor: [14, 70, 163] },
+    });
+
+    const doughnutCanvas = doughnutRef.current?.canvas;
+    if (doughnutCanvas) {
+      const imgData1 = doughnutCanvas.toDataURL("image/png");
+      doc.addPage();
+      doc.text("Distribución de Obras Sociales (General)", 14, 20);
+      doc.addImage(imgData1, "PNG", 30, 40, 150, 150);
+    }
+
+    const barCanvas = barRef.current?.canvas;
+    if (barCanvas) {
+      const imgData2 = barCanvas.toDataURL("image/png");
+      doc.addPage();
+      doc.text("Cantidad de Pacientes por Obra Social (General)", 14, 20);
+      doc.addImage(imgData2, "PNG", 15, 40, 180, 120);
+    }
+
+    // --- Si hay doctor, agregar sección específica ---
+    if (doctor) {
+      doc.addPage();
+      doc.setFontSize(16);
+      doc.setTextColor("#0E46A3");
+      doc.text(
+        `Obras Sociales del Doctor/a: ${doctor.nombre} ${doctor.apellido}`,
+        14,
+        20
+      );
+
+      autoTable(doc, {
+        startY: 30,
+        head: [["Obra Social", "Cantidad de Pacientes"]],
+        body: dataObrasDoctor.map((o) => [o.obraSocial, o.cantidad]),
+        headStyles: { fillColor: [14, 70, 163] },
+      });
+
+      const doughnutDoctorCanvas = doughnutDoctorRef.current?.canvas;
+      if (doughnutDoctorCanvas) {
+        const imgData3 = doughnutDoctorCanvas.toDataURL("image/png");
+        doc.addPage();
+        doc.text("Distribución de Obras Sociales (del Doctor)", 14, 20);
+        doc.addImage(imgData3, "PNG", 30, 40, 150, 150);
+      }
+
+      const barDoctorCanvas = barDoctorRef.current?.canvas;
+      if (barDoctorCanvas) {
+        const imgData4 = barDoctorCanvas.toDataURL("image/png");
+        doc.addPage();
+        doc.text("Cantidad de Pacientes por Obra Social (del Doctor)", 14, 20);
+        doc.addImage(imgData4, "PNG", 15, 40, 180, 120);
+      }
+    }
+
+    doc.save("Informe-Obras-Sociales.pdf");
+  };
+
   return (
     <>
       <NavbarComponentsAdmin />
@@ -121,7 +191,9 @@ const VerObrasSociales = () => {
         <Row className="mb-3">
           <Col className="d-flex justify-content-between align-items-center">
             <h1>Todas las obras sociales (general)</h1>
-            <Button variant="primary">Descargar Informe PDF</Button>
+            <Button variant="primary" onClick={generarPDF}>
+              Descargar Informe PDF
+            </Button>
           </Col>
         </Row>
 
