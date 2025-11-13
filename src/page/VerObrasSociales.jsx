@@ -31,6 +31,8 @@ const VerObrasSociales = () => {
   const [dataObras, setDataObras] = useState([]);
   const [dataObrasDoctor, setDataObrasDoctor] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedMonth, setSelectedMonth] = useState("");
+  const [selectedYear, setSelectedYear] = useState("");
 
   const doughnutRef = useRef(null);
   const barRef = useRef(null);
@@ -50,6 +52,7 @@ const VerObrasSociales = () => {
     "#6FA8DC",
   ];
 
+  // === CARGA DE DATOS GENERALES ===
   const fetchObrasSociales = async () => {
     try {
       const res = await axiosClient.get("/reportes/obras-sociales");
@@ -59,14 +62,41 @@ const VerObrasSociales = () => {
     }
   };
 
+  // === CARGA DE DATOS DEL DOCTOR ===
   const fetchObrasPorDoctor = async () => {
     if (!doctor?._id) return;
     try {
-      const res = await axiosClient.get(`/reportes/obras-sociales/${doctor._id}`);
+      const res = await axiosClient.get(
+        `/reportes/obras-sociales/${doctor._id}`
+      );
       setDataObrasDoctor(res.data.obrasSociales || []);
     } catch (error) {
       console.error("Error al cargar obras sociales del doctor:", error);
     }
+  };
+
+  // === FILTRAR POR MES Y AÑO ===
+  const handleFiltrar = async () => {
+    if (!doctor?._id) return;
+    try {
+      const params = {};
+      if (selectedMonth) params.mes = selectedMonth;
+      if (selectedYear) params.anio = selectedYear;
+
+      const res = await axiosClient.get(
+        `/reportes/obras-sociales/${doctor._id}`,
+        { params }
+      );
+      setDataObrasDoctor(res.data.obrasSociales || []);
+    } catch (error) {
+      console.error("Error al aplicar filtro:", error);
+    }
+  };
+
+  const handleLimpiarFiltro = async () => {
+    setSelectedMonth("");
+    setSelectedYear("");
+    await fetchObrasPorDoctor();
   };
 
   useEffect(() => {
@@ -80,6 +110,7 @@ const VerObrasSociales = () => {
 
   if (loading) return <div>Cargando reportes...</div>;
 
+  // === CONFIGURACIÓN DE GRÁFICOS ===
   const generarChartData = (data, label = "Cantidad de Pacientes") => {
     const labels = data.map((o) => o.obraSocial);
     const cantidades = data.map((o) => o.cantidad);
@@ -108,12 +139,10 @@ const VerObrasSociales = () => {
   };
 
   const { doughnutData, barData } = generarChartData(dataObras);
-  const {
-    doughnutData: doughnutDataDoctor,
-    barData: barDataDoctor,
-  } = generarChartData(dataObrasDoctor, "Pacientes del Doctor");
+  const { doughnutData: doughnutDataDoctor, barData: barDataDoctor } =
+    generarChartData(dataObrasDoctor, "Pacientes del Doctor");
 
-  // 📄 === Generar PDF ===
+  // === GENERAR PDF ===
   const generarPDF = () => {
     const doc = new jsPDF();
 
@@ -145,7 +174,7 @@ const VerObrasSociales = () => {
       doc.addImage(imgData2, "PNG", 15, 40, 180, 120);
     }
 
-    // --- Si hay doctor, agregar sección específica ---
+    // --- Sección específica del doctor ---
     if (doctor) {
       doc.addPage();
       doc.setFontSize(16);
@@ -183,6 +212,7 @@ const VerObrasSociales = () => {
     doc.save("Informe-Obras-Sociales.pdf");
   };
 
+  // === RENDER ===
   return (
     <>
       <NavbarComponentsAdmin />
@@ -211,6 +241,69 @@ const VerObrasSociales = () => {
                 Cantidad de Pacientes por Obra Social
               </h5>
               <Bar ref={barRef} data={barData} />
+            </Card>
+          </Col>
+        </Row>
+        {/* ====================== FILTRO POR MES Y AÑO ====================== */}
+        <Row className="mt-5">
+          <Col md={12}>
+            <Card className="p-3">
+              <h4 className="text-center mb-4">
+                Filtrar reportes por mes y año
+              </h4>
+              <Row className="justify-content-center mb-3">
+                <Col md={3}>
+                  <label className="form-label">Mes:</label>
+                  <select
+                    className="form-select"
+                    value={selectedMonth}
+                    onChange={(e) => setSelectedMonth(e.target.value)}
+                  >
+                    <option value="">Todos</option>
+                    <option value="1">Enero</option>
+                    <option value="2">Febrero</option>
+                    <option value="3">Marzo</option>
+                    <option value="4">Abril</option>
+                    <option value="5">Mayo</option>
+                    <option value="6">Junio</option>
+                    <option value="7">Julio</option>
+                    <option value="8">Agosto</option>
+                    <option value="9">Septiembre</option>
+                    <option value="10">Octubre</option>
+                    <option value="11">Noviembre</option>
+                    <option value="12">Diciembre</option>
+                  </select>
+                </Col>
+
+                <Col md={3}>
+                  <label className="form-label">Año:</label>
+                  <select
+                    className="form-select"
+                    value={selectedYear}
+                    onChange={(e) => setSelectedYear(e.target.value)}
+                  >
+                    <option value="">Todos</option>
+                    {[2023, 2024, 2025].map((year) => (
+                      <option key={year} value={year}>
+                        {year}
+                      </option>
+                    ))}
+                  </select>
+                </Col>
+              </Row>
+
+              <div className="text-center">
+                <Button variant="primary" onClick={handleFiltrar}>
+                  Aplicar Filtro
+                </Button>
+                <Button
+                  variant="secondary"
+                  className="ms-3"
+                  onClick={handleLimpiarFiltro}
+                >
+                  Limpiar
+                </Button>
+              </div>
             </Card>
           </Col>
         </Row>
