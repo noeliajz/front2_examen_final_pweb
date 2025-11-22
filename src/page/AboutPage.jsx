@@ -8,7 +8,6 @@ const AboutPage = () => {
      
 
      <h1 className="text-center p-5">Integrantes del grupo</h1>
-     <h3 className="text-center p-4">Luis Rodolfo Neme </h3>
      <h3 className="text-center p-4">Noelia Judith Zelaya</h3>
    </div>
     <Footer/>
