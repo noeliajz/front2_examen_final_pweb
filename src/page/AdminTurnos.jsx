@@ -10,6 +10,7 @@ import clienteAxios from "./clienteAxios";
 // Se importa el componente de formulario (Form) para usar el Checkbox
 import Form from "react-bootstrap/Form";
 import NavbarComponentsAdmin from "../components/NavbarComponentsAdmin";
+import "../css/AdminTurnosCss.css";
 
 const AdminTurnos = () => {
   const { id } = useParams();
@@ -344,30 +345,29 @@ const AdminTurnos = () => {
                                     Enviar WhatsApp (Servidor) 📲
                                   </Link>
                                 </td>
+                                <td>
+                                  <div className="asistencia-container">
+                                    <Form.Check
+                                      type="checkbox"
+                                      checked={turno.asistencia}
+                                      onChange={() =>
+                                        handleToggleAsistencia(
+                                          turno._id,
+                                          turno.asistencia
+                                        )
+                                      }
+                                    />
 
-                                <td>
-                                  {/* BOTÓN WHATSAPP INDIVIDUAL */}
-                                  <Button
-                                    variant="success"
-                                    size="sm"
-                                    onClick={() =>
-                                      handleWhatsApp(
-                                        turno.telefonoUsuario,
-                                        turno.fecha
-                                      )
-                                    }
-                                    disabled={!turno.telefonoUsuario}
-                                    style={{
-                                      background: "#25D366",
-                                      borderColor: "#25D366",
-                                      color: "white",
-                                    }}
-                                  >
-                                    WA 💬
-                                  </Button>
+                                    <span className="asistencia-texto">
+                                      {turno.asistencia
+                                        ? "Asistió"
+                                        : "Pendiente"}
+                                    </span>
+                                  </div>
                                 </td>
+
                                 {/* 🛑 NUEVA COLUMNA DE ASISTENCIA */}
-                                <td>
+                                {/* <td>
                                   <Form.Check
                                     type="checkbox"
                                     label={
@@ -381,7 +381,7 @@ const AdminTurnos = () => {
                                       )
                                     }
                                   />
-                                </td>
+                                </td> */}
                               </tr>
                             ))}
                           </tbody>

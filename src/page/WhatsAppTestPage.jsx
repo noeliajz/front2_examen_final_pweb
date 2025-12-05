@@ -64,13 +64,13 @@ const WhatsAppTestPage = () => {
       <div className="flex justify-center items-center min-h-screen bg-gray-100">
         <form
           onSubmit={handleSubmit}
-          className="bg-white p-6 rounded-2xl shadow-md w-96"
+          className="bg-white px-5 rounded-2xl shadow-md w-96"
         >
-          <h2 className="text-2xl font-bold mb-4 text-center">
+          <h2 className="text-2xl font-bold mb-4 text-center ">
             Enviar WhatsApp (Servidor)
           </h2>
 
-          <label className="block mb-2 font-semibold">
+          <label className="block mb-2 font-semibold px-2">
             Número de WhatsApp:
           </label>
           <input
@@ -82,7 +82,7 @@ const WhatsAppTestPage = () => {
             className="w-full p-2 mb-4 border rounded"
           />
 
-          <label className="block mb-2 font-semibold">Fecha del turno:</label>
+          <label className="block mb-2 font-semibold px-3">Fecha del turno:</label>
           <input
             type="text"
             name="fecha"
@@ -92,7 +92,7 @@ const WhatsAppTestPage = () => {
             className="w-full p-2 mb-4 border rounded"
           />
 
-          <label className="block mb-2 font-semibold">Doctor/a:</label>
+          <label className="block mb-2 font-semibold px-5">Doctor/a:</label>
           <input
             type="text"
             name="doctor"
@@ -104,7 +104,12 @@ const WhatsAppTestPage = () => {
 
           <button
             type="submit"
-            className="w-full bg-green-600 text-white p-2 rounded hover:bg-green-700"
+            className=" p-2 mx-3 btn "
+            style={{
+                  margin: "20px",
+                  background: "#0E46A3",
+                  color: "#E1F7F5",
+                }}
           >
             Enviar WhatsApp 📲
           </button>
